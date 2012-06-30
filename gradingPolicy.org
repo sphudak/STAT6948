@@ -61,7 +61,7 @@ It is expected that you will make every possible effort to attend all classes. A
 |--------------+--------------------------+---------------|
 | Exam         | Date                     | Time          |
 |--------------+--------------------------+---------------|
-| Midterm Exam | Friday, July 20, 2012    | 13:00 – 15:15 |
+| Midterm Exam | Monday, July 23, 2012    | 14:10 – 15:15 |
 | Final Exam   | Friday, Augusut 10, 2012 | 13:00 – 15:15 |
 |--------------+--------------------------+---------------|
 

@@ -13,18 +13,18 @@
 #+LaTeX_HEADER: \usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
 #+LaTeX_HEADER: \geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
 
-* Chapter 1  (Week 1A)
+* Chapter 1
 - Course policies, procedures, and expectations
 - Beginning concepts of time series, history
 - Get the computer up and running
 
-* Chapter 2 (Week 1C): Basic concepts of mean, covariance, correlation, and stationarity
+* Chapter 2: Basic concepts of mean, covariance, correlation, and stationarity
 - Basic concepts of stochastic processes 
 - Mean functions, autocovariance functions, and autocorrelation functions
 - Examples: white noise, random walk, moving average, random cosine wave
 - Introduce concept of stationarity
 
-* Chapter 3 (Week 2A): Trend analysis, estimation and diagnostics
+* Chapter 3: Trend analysis, estimation and diagnostics
 - Describing, modeling, and estimating deterministic trends
 - Constant mean: estimation and assessment of accuracy
 - Regression methods to estimate linear or quadratic trends
@@ -33,7 +33,7 @@
 - Introduce residual analysis
 - Sample autocorrelation function
 
-* Chapter 4 (Week 2B): Autoregressive moving average (ARMA) parametric models for stationary time series 
+* Chapter 4: Autoregressive moving average (ARMA) parametric models for stationary time series 
 - Introduce ARMA models
 - Special cases: MA(1) and MA(2)
 - Special cases: AR(1) and AR(2)
@@ -41,32 +41,32 @@
 - Properties of mixed ARMA models
 - Autocorrelation properties and the various representations
 
-* Chapter 5 (Week 2C): Extend to ARIMA models for certain types of nonstationarity
+* Chapter 5: Extend to ARIMA models for certain types of nonstationarity
 - Use differencing to introduce stationary in nonstationary series.
 - Properties and behavior of ARIMA models
 - Other transformations such as logarithmic and percentage change
 - Power transformations, Box-Cox transformations to help with stationarity and/or normality
 
-* Chapter 6 (Week 3A): Tentative specification of ARIMA models 
+* Chapter 6: Tentative specification of ARIMA models 
 - Specifying reasonable but simple models for observed times series
 - Tools for choosing the orders (p,d,q) for ARIMA(p,d,q) models
 - Sample autocorrelation function, sample partial autocorrelation function, sample extended autocorrelation function
 - Dickey-Fuller unit-root test to help distinguish (non)stationary series
 
-* Chapter 7 (Week 3B): Efficient estimation of ARIMA model parameters 
+* Chapter 7: Efficient estimation of ARIMA model parameters 
 - Estimation of ARIMA model parameters
 - Criteria based on method of moments, least squares, and likelihood function
 - Properties of various estimators
 - Bootstrapping with ARIMA models
 
-* Chapter 8 (Week 4A): Assessing ARIMA model fit
+* Chapter 8: Assessing ARIMA model fit
 - Considerable expansion of residual analysis
 - Plots assess error terms for constant variance, normality, and independence
 - Properties of the sample autocorrelation of the residuals
 - Ljung-Box statistic portmanteau test as summary of residual autocorrelation
 - Overfitting and parameter redundancy
 
-* Chapter 9 (Week 4B): Theory/methods of ARIMA forecasting
+* Chapter 9: Theory/methods of ARIMA forecasting
 - Forecasting future values based on minimizing mean square forecasting error
 - Simple cases, extrapolate estimated trend
 - Autocorrelation, forecasts incorporate those
@@ -74,36 +74,36 @@
 - Prediction limits assess potential accuracy 
 - Forecasts involving transformation of original series
 
-* Chapter 10 (Week 4C): Extend all the above to seasonal ARIMA models
+* Chapter 10: Extend all the above to seasonal ARIMA models
 - Multiplicative seasonal ARIMA models 
 - Identification, estimation, diagnostics
 
-* Chapter 11 (Week 5A): Intervention analysis, outliers, spurious correlation, and prewhitening
+* Chapter 11: Intervention analysis, outliers, spurious correlation, and prewhitening
 - intervention models incorporate known external events which have a significant effect on the time series
 - Develop models to detect and incorporate outliers in time series
 - spurious correlation and its effects
 - prewhitening and stochastic regression
 
-* Chapter 12 (Week 5B): Models for heteroscedasticity
+* Chapter 12: Models for heteroscedasticity
 - terms and issues associated with financial time series
 - Autoregressive conditional heteroscedasticity (ARCH) models
 - Special case: ARCH(1)
 - GARCH(p,q): generalized autoregressive conditional heteroscedasticity
 - identification, maximum likelihood estimation, prediction, and model diagnostics
 
-* Chapter 13 (Week 5C): Spectral analysis
+* Chapter 13: Spectral analysis
 - Model as linear combinations of sines and cosines
 - Periodogram measures contribution of frequencies in spectral representation
 - Modeling with continuous range of frequencies
 - Spectral densities of ARMA models
 - Sampling properties of the sample spectral density
 
-* Chapter 14 (Week 6A): Better methods for spectral density estimation
+* Chapter 14: Better methods for spectral density estimation
 - Introduce smoothed sample spectral density 
 - Bias, variance, leakage, bandwidth, and tapering
 - Procedure for forming confidence intervals 
 
-* Chapter 15 (Week 6B): Threshold models and nonlinear predictors
+* Chapter 15: Threshold models and nonlinear predictors
 - Threshold model: nonlinear time series
 - How to test for nonlinearity and threshold nonlinearity
 - Parameter estimation using minimum AIC (MAIC) criterion and conditional least squares
