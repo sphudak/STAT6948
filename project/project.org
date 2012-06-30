@@ -1,0 +1,44 @@
+#+TITLE: STAT 5848/6948 Term Project
+#+DATE: \vspace{-0.5in} Summer 2012
+#+OPTIONS: toc:nil num:nil author:nil creator:nil timestamp:nil ^:nil
+#+LaTeX_CLASS_OPTIONS: [10pt]
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+#+LaTeX: \thispagestyle{empty}
+
+* Description
+
+- The term project can be done individually or by a team of *at most four* students.
+
+- Data sets may be selected by the investigators.  Some datasets can be found [[http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/][here]]. If you can’t find a dataset, ask me and I will give you ideas.  
+
+- The term project will be graded by the following criteria:
+  + Appropriateness and accuracy of analysis 60%.
+  + Writing 30%: Organization 15%, Professionalism & Style 15%.
+  + Thoroughness: 10%.
+
+- Email or otherwise transmit two (2) things to me: 1) your =lastname.RData= file and 2) your =lastname.Rnw= file.
+  + The "lastname" should be the last name of one of your team members. If I were to turn in the report, my file names would be =kerns.RData= and =kerns.Rnw=. 
+  + Your term project report may later be posted on the web, /e.g./, as a sample project for future students. If you do not wish your report to be posted, please let me know.
+
+
+** Timeline: 
+- Sign Up by: Friday, July 20
+- Data Set Selected by: Friday, July 27
+- Projects are due by: *Thursday, August 9, 2012 @ 11:59:59PM*
+
+
+** Any Project that does all of the following things will be 100% sure to get a 120 pt. Score.
+
+1. The final report should have a Title page, then an Executive Summary page, and lastly Data Analysis/Interpretation page(s). 
+
+2. Both parts (the =.RData= and =.Rnw= files) need to be /received/ by me by the deadline.  The =.Rnw= file must run cleanly *without errors* together with the =.RData= file to generate the final report for me to read. 
+
+3. In the Project report, the investigators should intelligently address, where applicable, all components as listed on the _Guide to Report Writing_. 
+
+4. All reports should include a final fitted model, appropriate diagnostic checks, and at least two (2) forecasts and prediction intervals. Significance levels, forecasts, and hypotheses are to be determined by the investigators.
+
+5. The report should exhibit proper English, correct grammar, spelling, and punctuation.
+
+
+

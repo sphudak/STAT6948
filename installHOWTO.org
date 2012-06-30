@@ -1,0 +1,47 @@
+#+TITLE:   HOWTO Install Software for STAT 5848/6948 at Home
+#+AUTHOR:    G. Jay Kerns
+#+EMAIL:     gkerns@ysu.edu
+#+DATE:      \vspace{-0.5in}Summer 2012
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 toc:nil author:nil ^:nil num:nil
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [10pt,english]
+#+LaTeX_HEADER: \usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+#+LaTeX_HEADER: \geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+#+latex: \thispagestyle{empty}
+
+* You need =R=
+The best thing I know to tell you is to use the install instructions I've written for =IPSUR= (a separate project, but it might be of some use to you).  You can find the instructions here:
+#+begin_center
+[[http://ipsur.org/install.html][ =http://ipsur.org/install.html= ]]
+#+end_center
+It's your best bet to install =R= in the default place.
+
+* You need \LaTeX
+In order to write statistical reports with =R= you are going to need a \(\LaTeX\) distribution.  If you are running Microsoft Windows then your best bet is to go with MikTeX which you can find here:
+#+begin_center
+[[http://miktex.org][ =http://miktex.org= ]]
+#+end_center
+You will want to Download and install the latest version (2.9), though older versions will probably work if you have them.  It is probably alright to stick with the "Basic Installer", if nothing else, because the complete installation has a lengthy download time.
+
+* You need =RStudio=
+Note for this step that you must have installed =R= version 2.11.1 or later.  Go here to download and install =RStudio=:
+#+begin_center
+[[http://www.rstudio.org/][ =http://www.rstudio.org/= ]]
+#+end_center
+You want the /Desktop/ version, and again, you are best to install in the default place.
+
+* Getting everybody to play together nicely
+You don't actually need \(\LaTeX\) unless you are going to work on your =Sweave= reports at home.  I am guessing that you will want to at least try it out, but I'll admit to you that getting everybody to play together nicely is the hardest part of the process.  I'm saying this here because if for some reason you /cannot/ get everybody playing together then you can forego the \(\LaTeX\) part, get your script working the way you want it to at home, then come to YSU to write your report.
+
+The most important thing is to install software in the default place in the right order so that it's easier for later parts to /find/ the parts earlier installed.  In the Lincoln 414 lab everything is in the right place and working so no additional work is needed.
+
+One of the problems that has come up in previous years (depending on your system) is that sometimes the computer will complain =ERROR: Sweave.sty is not found=.  If this happens to you, then download the following file, =Sweave.sty=, from here:
+#+begin_center
+[[http://www.cepe.ethz.ch/education/NPecoHS2010/Sweave.sty][ =http://www.cepe.ethz.ch/education/NPecoHS2010/Sweave.sty= ]]
+#+end_center
+and save it in the same place where you have your report =.Rnw= file saved.  Then add the line
+
+: \usepackage{Sweave}
+
+to the Preamble of the =.Rnw= file (somewhere above the line =\begin{document}=).

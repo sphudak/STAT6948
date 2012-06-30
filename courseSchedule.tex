@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{termcal}
+%\usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+%\geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+\thispagestyle{empty}
+
+\newcommand{\MWFClass}{%
+\calday[Monday]{\classday} % Monday
+\skipday % Tuesday (no class)
+\calday[Wednesday]{\classday} % Wednesday
+\skipday % Thursday (no class)
+\calday[Friday]{\classday} % Friday 
+\skipday\skipday % weekend (no class)
+}
+
+\newcommand{\MWClass}{%
+\calday[Monday]{\classday} % Monday
+\skipday % Tuesday (no class)
+\calday[Wednesday]{\classday} % Wednesday
+\skipday % Thursday (no class)
+\skipday % Friday 
+\skipday\skipday % weekend (no class)
+}
+
+\newcommand{\TRClass}{%
+\skipday % Monday (no class)
+\calday[Tuesday]{\classday} % Tuesday
+\skipday % Wednesday (no class)
+\calday[Thursday]{\classday} % Thursday
+\skipday % Friday 
+\skipday\skipday % weekend (no class)
+}
+
+\newcommand{\Holiday}[2]{%
+\options{#1}{\noclassday}
+\caltext{#1}{#2}
+}
+
+\begin{document}
+\subsection*{Tentative Schedule: STAT 5848/6948 Summer 2012}
+\begin{center}
+\begin{calendar}{7/2/2012}{6} % Semester starts on 7/2/2012 and lasts for 6
+                    % weeks, including finals week
+\setlength{\calboxdepth}{0.8in}
+\MWFClass
+% schedule
+\caltexton{1}{Chapter 1}
+\caltextnext{Chapter 2}
+\caltextnext{Chapter 3}
+\caltextnext{Chapter 4}
+\caltextnext{Chapter 5}
+\caltextnext{Chapter 6}
+\caltextnext{Chapter 7}
+\caltextnext{Chapter 8}
+\caltextnext{Chapter 9}
+\caltextnext{Chapter 10}
+\caltextnext{Chapter 11}
+\caltextnext{Chapter 12}
+\caltextnext{Chapter 13}
+\caltextnext{Chapter 14}
+\caltextnext{Chapter 15}
+\caltextnext{Overflow and Project}
+\caltextnext{You're done.}
+% ... and so on
+
+% Holidays
+\Holiday{7/4/2012}{\textbf{Fourth of July}\newline (no class)}
+% ... and so on
+
+% Options
+\options{7/4/2012}{\noclassday} % finals week
+
+% Quizzes and Exams
+\caltext{7/20/2012}{\textbf{Midterm 200pts}}
+\caltext{7/20/2012}{Project signup}
+\caltext{7/27/2012}{Dataset selected}
+\caltext{8/8/2012}{\textbf{Project DUE} \newline Thursday @ 23:59:59}
+\caltext{8/10/2012}{\textbf{Final 300pts}}
+\end{calendar}
+\end{center}
+\end{document}

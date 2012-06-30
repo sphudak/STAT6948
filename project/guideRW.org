@@ -1,0 +1,40 @@
+#+TITLE: Guide to Report Writing
+#+DATE: \vspace{-0.5in}
+#+LaTeX_CLASS_OPTIONS: [10pt]
+#+OPTIONS: toc:nil num:nil author:nil creator:nil timestamp:nil ^:nil
+#+LaTeX_HEADER: \usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+#+LaTeX_HEADER: \geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+#+LaTeX: \thispagestyle{empty}
+
+* Executive Summary 
+(one page brief description of the study and conclusion)
+
+* Introduction
+- What is the question?
+- Why is the question important?
+- What are the hypotheses?
+- What is the type of study? (observational, experimental)
+- What is the type of analysis? (one sample t-test, paired-sample t-test, ANOVA, chi-square test, regression, ...)
+
+* Describe data collection techniques
+- Describe data collection procedures
+- Discuss limitations of data collection procedure
+
+* Summary Information
+- Numeric Summary
+  + Discrete – frequency, percent, contingency tables, etc.
+  + Continuous – mean, SD, Q1, Q3, etc.
+- Visual Summary
+  +Side by Side Box Plots, Scatter Plots, Probability Plots, etc.
+
+* Analysis
+- State hypothesis
+- Give test statistic and p-value (or Confidence Interval)
+- Interpret results
+- Attach tables and/or graphs and make reference to them in your report when necessary.
+
+* Conclusions
+- Summarize Results
+- Discuss limitations of the study
+- Discuss possible further research
+

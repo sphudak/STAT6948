@@ -1,0 +1,432 @@
+% A Brief Introduction to R (Sweave example)
+% BriefIntroDoc.Rnw
+
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=0.5in,lmargin=0.9in}
+\usepackage{color}
+\usepackage{url}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\usepackage{Sweave}
+\newcommand{\Rcode}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rcommand}[1]{{\texttt{#1}}}
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\textit{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\textit{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+
+% packages used
+\usepackage{amssymb,latexsym}
+\usepackage[mathscr]{eucal}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{layout}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+% get rid of extra Sweave space
+\fvset{listparameters={\setlength{\topsep}{0pt}}}
+\renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}}  
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\title{A \emph{Brief} Introduction to \textsf{R}}
+
+\maketitle
+This is a document designed to help a person to begin to get to know
+the \textsf{R} statistical computing environment. It paraphrases and
+summarizes information gleaned from materials listed in the \textbf{References}.
+Please refer to them for a more complete treatment.
+
+
+\section{Installing \textsf{R} and the \texttt{IPSUR} Package}
+
+There are detailed instructions for installing \textsf{R} on your
+personal computer at the following website:
+
+\begin{center}
+\url{http://ipsur.org/install.html}
+\par\end{center}
+
+\noindent For more complete and technical installation instructions
+see the \emph{R Installation and Administration Manual}.
+
+\begin{center}
+\url{http://cran.r-project.org/doc/manuals/R-admin.html}
+\par\end{center}
+
+\noindent You will also want to install RStudio, which you can find
+here:
+
+\begin{center}
+\url{http://www.rstudio.org/}
+\par\end{center}
+
+
+\section{Communicating with \textsf{R}}
+
+There are three basic methods for communicating with the software.
+\begin{enumerate}
+\item At the Command Prompt (\texttt{>}).
+
+
+This is the most basic way to complete simple, one-line commands.
+\textsf{R} will evaluate what is typed there and output the results
+in the Console Window.
+
+\item Copy \& Paste from a text file.
+
+
+For longer programs (called \emph{scripts}) there is too much code
+to write all at once at the Command Prompt. Further, for long scripts
+the user sometimes wishes to only modify a certain piece of the script
+and run it again in \textsf{R}. 
+
+
+One way to do this is to open a text file with a text editor (say,
+NotePad or MS-Word$\circledR$). One writes the code in the text file,
+then when satisfied the user copy-and-pastes it at the Command Prompt
+in \textsf{R}. Then \textsf{R} will compile all of the code at once
+and give output in the Console Window. 
+
+
+Alternatively, \textsf{R} provides its own built-in script editor,
+called \textsf{R} Editor. From the console window, select \emph{File
+$\rightarrow$ New} \emph{Script.} A script window opens, and the
+lines of code can be written in the window. When satisfied with the
+code, the user highlights all of the commands and presses \texttt{Ctrl+R}.
+The commands are automatically run at once in \textsf{R} and the output
+is shown. To save the script for later, click \emph{File $\rightarrow$
+Save as...} in \textsf{R} Editor. The script can be reopened later
+with \emph{File $\rightarrow$ Open Script...} in the Console Window.
+
+
+A disadvantage to these methods is that all of the code is written
+in the same way, with the same font. It can become confusing with
+longer scripts, and there is no way to efficiently identify mistakes
+in the code. To address this problem, software developers have designed
+powerful IDE / Script Editors.
+
+\item IDE / Script Editors.
+
+
+There are free programs specially designed to aid the communication
+and code writing process. The advantage to using Script Editors is
+that they have additional functions and options to help the user write
+code more efficiently, including \textsf{R} syntax highlighting, automatic
+code completion, delimiter matching, and dynamic help on the \textsf{R}
+functions as they are written. In addition, they typically have all
+of the text editing features of programs like MS Word. Lastly, most
+script editors are fully customizable in the sense that the user can
+customize the appearance of the interface and can choose what colors
+to display, when to display them, and how they are to be displayed.
+
+
+Some of the more popular script editors can be downloaded from the
+R-Project website at \\
+\url{http://www.sciviews.org/_rgui/}. On the left side of the screen
+(under \textbf{Projects}) there are several choices available.
+
+\begin{itemize}
+\item \textbf{RStudio}: This open-source IDE works on all platforms and
+is the best one for beginners that I have yet seen to date.
+\item \textbf{Tinn-}\textsf{\textbf{R}}: This one is also free, but is really
+just used for editing scripts.
+\item \textbf{Emacs} / \textbf{ESS}: Click Emacs (ESS) or Emacs (ESS/Windows).
+This will take you to download sites with sophisticated programs for
+editing, compiling, and coordinating software such as \texttt{S-Plus},
+\textsf{R}, and \texttt{SAS} simultaneously. Emacs is short for \emph{E}diting
+\emph{MAC}ro\emph{S} and ESS means \emph{E}macs \emph{S}peaks \emph{S}tatistics.
+An alternate branch of Emacs is called XEmacs. This editor is -- \emph{by
+far} -- the most powerful of the text editors, but all of the flexibility
+comes at a price. Emacs requires a level of computer-saavy that the
+others do not, and the learning curve is more steep. If you want to
+explore this option, then speak with me beforehand; I can give you
+some advice about getting started.
+\end{itemize}
+
+\end{enumerate}
+
+\section{A First Session: Using \textsf{R} as a calculator}
+
+
+\textsf{R} is perfectly able to do standard calculations. For example,
+type $2+3$ and observe
+
+<<>>=
+2 + 3
+@
+
+The \texttt{{[}1{]}} means that the 5 is the first entry in the list,
+and the \texttt{>} means that \textsf{R} is waiting on your next command.
+Entry numbers will be generated for each row, such as
+
+<<>>=
+3:50
+@
+
+
+Here, the $26^{\mathrm{th}}$ entry in the list is 28. Notice also
+the \texttt{3:50} notation, which generates all numbers in sequence
+from 3 to 50. One can also do things like
+
+<<keep.source = TRUE>>=
+2 * 3 * 4 * 5  # multiply
+sqrt(10)       # square root
+pi             # pi
+sqrt(-2)
+@
+
+
+Notice that \texttt{NaNs} were produced; this stands for ``not
+a number''. Also notice the number sign \texttt{\#}, which means
+\emph{comment}. Everything typed on the same line after the \texttt{\#}
+will be ignored by \textsf{R}. There is also a continuation prompt
+\texttt{+} which occurs if you press \texttt{Enter} before a statement
+is complete. For example, if you forget to close the parentheses or
+a command you may get something like the following:
+
+\begin{Schunk}
+\begin{Sinput}
+> sqrt(27 + 32
++
++
+\end{Sinput}
+\end{Schunk}
+
+To exit out of the continuation prompt, you can either complete the
+command - by entering a \texttt{)} in the above example
+- or you may press the \texttt{Esc} key.
+
+Some other fuctions that will be of use are \texttt{abs()} for absolute
+value, \texttt{log()} for the natural logarithm, \texttt{exp()} for
+the exponential function, \texttt{factorial()} for computing permutations,
+and \texttt{choose()} for binomial coefficients.
+
+\textbf{Assignment.} This is useful for storing values to be used
+later.
+
+<<keep.source = TRUE>>=
+y = 5    # stores the value 5 in y
+y
+y <- 5   # also stores the value 5 in y
+7 -> z   # stores the value 7 in z
+@
+
+You do not have to use the \texttt{<-} notation to store things; the
+equal sign \texttt{=} works just as well. I will use both symbols
+interchangeably.
+
+\textbf{Acceptable variable names.} You can use letters, numbers,
+dots ``\texttt{.}'', or underscore ``\texttt{\_}'' characters.
+You cannot use mathematical operators, and a leading dot may not be
+followed by a number. Examples: \texttt{x}, \texttt{x1}, \texttt{y32},
+\texttt{x.variable}, \texttt{x\_variable}.
+
+\textbf{Using} \texttt{\textbf{c()}} \textbf{to enter data vectors.}
+If you would like to enter the data \texttt{74,31,95,61,76,34,23,54,96}
+into \textsf{R}, you may create a data vector with the \texttt{c()}
+function (short for \emph{concatenate}). 
+
+<<>>=
+fred = c(74, 31, 95, 61, 76, 34, 23, 54, 96)
+fred
+@
+
+The vector \texttt{fred} has 9 entries. We can access individual components
+with bracket \texttt{[]} notation:
+
+<<>>=
+fred[3]
+fred[2:4]
+fred[c(1, 3, 5, 8)]
+@
+
+
+If you would like to reset the variable \texttt{fred}, you can do
+it by typing \texttt{fred = c()}.
+
+\textbf{Using} \texttt{\textbf{scan()}} \textbf{to enter numeric data
+vectors}. If you would like to enter the data 76 34 23 54 96 into
+a vector \texttt{x}, perhaps the quickest way would be to use the
+\texttt{scan()} function:
+
+\begin{Schunk}
+\begin{Sinput}
+> x <- scan()
+1: 76
+2: 34
+3: 23
+4: 54
+5: 9
+66: 
+\end{Sinput}
+\begin{Soutput}
+Read 5 items
+\end{Soutput}
+\end{Schunk}
+
+This method is best suited for use with small data sets and \textbf{only
+works if the data are numeric}. Notice that entering an empty line
+stops the scan. Another use of this feature is when you have a long
+list of numbers (separated by spaces or on different lines) already
+typed somewhere else, say in a text file. To enter all the data in
+one fell swoop, highlight and copy the list of numbers to the Clipboard
+with \emph{Edit $\rightarrow$ Copy}, next type the \texttt{x = scan()}
+command in the \textsf{R} console, and paste the numbers at the \texttt{1:}
+prompt with \emph{Edit $\rightarrow$ Paste}. All of the numbers will
+automatically be entered into the vector \texttt{x}.
+
+\textbf{Data vectors have type}. There are numeric, character, and
+logical type vectors. If you mix and match then usually it will be
+character. Notice that characters can be identified with either single
+or double quotes.
+
+<<>>=
+simpsons = c("Homer", "Marge", "Bart", "Lisa", "Maggie")
+names(simpsons) = c("dad", "mom", "son", "daughter 1", "daughter 2")
+simpsons
+@
+
+
+Here is an example of a logical vector:
+
+<<>>=
+x = c(5, 7)
+v = (x < 6)
+@
+
+
+\textbf{Applying functions to a data vector.} Once we have stored
+a data vector then we can evaluate functions on it. 
+
+<<keep.source = TRUE>>=
+fred
+sum(fred)
+length(fred)
+sum(fred)/length(fred)
+mean(fred)                 # sample mean, should be same answer
+@
+
+
+Other popular functions for vectors are \texttt{range()}, \texttt{min()},
+\texttt{max()}, \texttt{sort()}, and \texttt{cumsum()}.
+
+\textbf{Vectorizing functions.} Arithmetic in \textsf{R} is almost
+always done element-wise, also known as \emph{vectorizing functions}.
+Some examples follow.
+
+<<>>=
+fred.2 = c(4, 5, 3, 6, 4, 6, 7, 3, 1)
+fred + fred.2
+fred - fred.2
+fred - mean(fred)
+@
+
+
+The operations \texttt{+} and \texttt{-} are performed element-wise.
+Notice in the last vector that \texttt{mean(fred)} was subtracted
+from each entry, in turn. This is also known as \emph{data recycling}.
+Other popular vectorizing functions are \texttt{sin()}, \texttt{cos()},
+\texttt{exp()}, \texttt{log()}, and \texttt{sqrt()}.
+
+
+\section{Getting Help}
+
+When you are using \textsf{R}, it will not take long before you find
+yourself needing help. Fortunately, \textsf{R} has extensive help
+resources and you should immediately become familiar with them. Begin
+by clicking \emph{Help} on the console. The following options are
+available.
+
+\begin{itemize}
+\item \textbf{Console}: gives useful shortcuts, for instance, \texttt{Ctrl+L},
+to clear the \textsf{R} console screen.
+\item \textbf{FAQ on }\textsf{\textbf{R}}: frequently asked questions concerning
+general \textsf{R} operation.
+\item \textbf{FAQ on }\textsf{\textbf{R}}\textbf{ for Windows}: frequently
+asked questions about \textsf{R}, tailored to the Windows operating
+system.
+\item \textbf{Manuals}: technical manuals about all features of the \textsf{R}
+system including installation, the complete language definition, and
+add-on packages.
+\item \textsf{\textbf{R}}\textbf{ functions (text)\ldots{}}: use this if
+you know the \emph{exact} name of the function you want to know more
+about, for example, \texttt{mean} or \texttt{plot.} Typing mean in
+the window is equivalent to typing \texttt{help(\textquotedbl{}mean\textquotedbl{})}
+at the command line, or more simply, \texttt{?mean}.
+\item \textbf{Html Help}: use this to browse the manuals with point-and-click
+links. It also has a Search Engine \& Keywords for searching the help
+page titles, with point-and-click links for the search results. This
+is possibly the best help method for beginners.
+\item \textbf{Search help\ldots{}}: use this if you do not know the exact
+name of the function of interest. For example, you may enter \texttt{plo}
+and a text window will return listing help files with an alias, concept,
+or title matching 'plo' using regular expression matching; it is equivalent
+to typing \texttt{help.search(\textquotedbl{}plo\textquotedbl{})}
+at the command line. The advantage is that you do not need to know
+the exact name of the function; the disadvantage is that you cannot
+point-and-click the results. Therefore, one may wish to use the Html
+Help search engine instead.
+\item \textbf{search.r-project.org\ldots{}}: this will search for words
+in help lists and archives of the \textsf{R} Project. It can be very
+useful for finding other questions that useRs have asked.
+\item \textbf{Apropos\ldots{}}: use this for more sophisticated partial
+name matching of functions. Try \texttt{?apropos} for details.
+\end{itemize}
+Note also \texttt{example()}. This initiates the running of examples,
+if available, of the use of the function specified by the argument.
+
+
+\section{Other tips}
+
+It is unnecessary to retype commands repeatedly, since \textsf{R}
+remembers what you have entered on the command line. To cycle through
+the previous commands, just push the $\uparrow$ (up arrow) key. 
+
+Missing values in \textsf{R} are denoted by \texttt{NA}. Operations
+on data vector \texttt{NA} values treat them as if the values can't
+be found. This means adding (as well as subtracting and all of the
+other mathematical operations) a number to \texttt{NA} results in
+\texttt{NA}.
+
+To find out what all variables are in the current work environment,
+use the commands \texttt{ls()} or \texttt{objects()}. These list all
+available objects in the workspace. If you wish to remove one or more
+variables, use \texttt{remove(var1, var2)}, and to remove all of them
+use \texttt{rm(list=ls())}. 
+
+
+\section{Some References}
+\begin{itemize}
+\item Dalgaard, P. (2002). \emph{Introductory Statistics with} \textsf{R}.
+Springer.
+\item Everitt, B. (2005). \emph{An} \textsf{R} \emph{and} \texttt{S-Plus}
+\emph{Companion to Multivariate Analysis}. Springer.
+\item Heiberger, R. and Holland, B. (2004). \emph{Statistical Analysis and
+Data Display. An Intermediate Course with Examples in} \texttt{S-Plus},
+\textsf{R}, \emph{and} \texttt{SAS}. Springer.
+\item Maindonald, J. and Braun, J. (2003). \emph{Data Analysis and Graphics
+Using} \textsf{R}: \emph{an Example Based Approach}. Cambridge University
+Press.
+\item Venables, W. and Smith, D. (2005). \emph{An Introduction to} \textsf{R}.
+\url{http://www.r-project.org/Manuals}.
+\item Verzani, J. (2005). \emph{Using} \textsf{R} for \emph{Introductory
+Statistics}. Chapman and Hall.\end{itemize}
+
+\end{document}

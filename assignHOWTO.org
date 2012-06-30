@@ -1,0 +1,34 @@
+#+TITLE:   HOWTO Submit Assignments for STAT 5848/6948
+#+AUTHOR:    G. Jay Kerns
+#+EMAIL:     gkerns@ysu.edu
+#+DATE:      \vspace{-0.5in}Summer 2012
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 toc:nil author:nil ^:nil num:nil
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [10pt,english]
+#+LaTeX_HEADER: \usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+#+LaTeX_HEADER: \geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+#+LaTeX: \thispagestyle{empty}
+
+* Who
+You.
+
+* What
+All STAT 5848/6948 assignments to be turned in for a grade should be submitted as =Sweave= files, that is, a text file with file extension =.Rnw= which contains =R= code mixed with \(\LaTeX\) code to ultimately come together to comprise a self-contained statistical report. Your file should be named according to the following scheme:
+
+: LastNameDueDate.Rnw
+
+So, for example, if I were going to submit an assignment due on July 27, I would submit a file called =Kerns072712.Rnw=.  Under rare circumstances (/e.g./ your Term Project) you may also need to send an =.RData= file containing data and/or relevant functions, in which case, it should similarly follow the above described naming convention. 
+
+* When
+Assignments are due /before class/ on the due-date assigned.  If it isn't in my email =INBOX= by =13:00:00=, then it's *late*, period.  Early submissions (to protect against the occasional email snafu) are welcomed and encouraged (for the final exam assignment, in particular).
+
+* Where
+Send STAT 5848/6948 submissions to my YSU email address, =gkerns@ysu.edu=.  Attach your =.Rnw= file to the email.  The subject line of the email should read =STAT 5848/6948 LastName DueDate=.  So, for instance, if I were turning in an assignment due on July 27 my email subject would read =STAT 5848/6948 Kerns 072712=.
+
+* How
+Use the templates I provide plus the =R= scripts we discuss in class to help you write your report(s).  In every case the work you need to do is scantly more than copy-pasting previous work and tweaking it a bit for your particular assignment.  Don't reinvent the wheel;  it's rolling right there in front of you.  If you have a personal computer at home and can manage to get it up and running to meet all of the installation requirements, then I encourage you to work at home.  Everything's *free*, after all.  Nevertheless, if you /don't/ own a personal computer or /can't/ manage to get everything running, then you can always use the Computer Lab in Lincoln 414.  I have checked it out and confirmed that everything there works without any trouble. 
+
+* Why
+- Short answer: :: you'd like to pass the class.  
+- Long answer: :: you have a burning, aching desire in the deepest reachest of your fiery intellect to become the baddest-assed computational statistician this side of the Mississippi River, and submission of a data analysis assignment for STAT 5848/6948 Summer 2012 is, in your view, one of the preliminary first steps in a long series of incremental successes toward that ultimate goal of superlative awesome-ness.
