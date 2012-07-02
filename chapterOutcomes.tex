@@ -1,0 +1,182 @@
+% Created 2012-07-02 Mon 07:11
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+\geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\title{\vspace{-0.5in}Course Outcomes for STAT 5848 \& 6948}
+%\author{G. Jay Kerns}
+\date{\vspace{-0.5in}Summer 2012}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.8.02}}
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Chapter 1}
+\label{sec-1}
+
+\begin{itemize}
+\item Course policies, procedures, and expectations
+\item Beginning concepts of time series, history
+\item Get the computer up and running
+\end{itemize}
+\section*{Chapter 2: Basic concepts of mean, covariance, correlation, and stationarity}
+\label{sec-2}
+
+\begin{itemize}
+\item Basic concepts of stochastic processes
+\item Mean functions, autocovariance functions, and autocorrelation functions
+\item Examples: white noise, random walk, moving average, random cosine wave
+\item Introduce concept of stationarity
+\end{itemize}
+\section*{Chapter 3: Trend analysis, estimation and diagnostics}
+\label{sec-3}
+
+\begin{itemize}
+\item Describing, modeling, and estimating deterministic trends
+\item Constant mean: estimation and assessment of accuracy
+\item Regression methods to estimate linear or quadratic trends
+\item Methods for modeling cyclical or seasonal trends
+\item Reliability and efficiency of all the above
+\item Introduce residual analysis
+\item Sample autocorrelation function
+\end{itemize}
+\section*{Chapter 4: Autoregressive moving average (ARMA) parametric models for stationary time series}
+\label{sec-4}
+
+\begin{itemize}
+\item Introduce ARMA models
+\item Special cases: MA(1) and MA(2)
+\item Special cases: AR(1) and AR(2)
+\item Stationarity and Invertibility issues
+\item Properties of mixed ARMA models
+\item Autocorrelation properties and the various representations
+\end{itemize}
+\section*{Chapter 5: Extend to ARIMA models for certain types of nonstationarity}
+\label{sec-5}
+
+\begin{itemize}
+\item Use differencing to introduce stationary in nonstationary series.
+\item Properties and behavior of ARIMA models
+\item Other transformations such as logarithmic and percentage change
+\item Power transformations, Box-Cox transformations to help with stationarity and/or normality
+\end{itemize}
+\section*{Chapter 6: Tentative specification of ARIMA models}
+\label{sec-6}
+
+\begin{itemize}
+\item Specifying reasonable but simple models for observed times series
+\item Tools for choosing the orders (p,d,q) for ARIMA(p,d,q) models
+\item Sample autocorrelation function, sample partial autocorrelation function, sample extended autocorrelation function
+\item Dickey-Fuller unit-root test to help distinguish (non)stationary series
+\end{itemize}
+\section*{Chapter 7: Efficient estimation of ARIMA model parameters}
+\label{sec-7}
+
+\begin{itemize}
+\item Estimation of ARIMA model parameters
+\item Criteria based on method of moments, least squares, and likelihood function
+\item Properties of various estimators
+\item Bootstrapping with ARIMA models
+\end{itemize}
+\section*{Chapter 8: Assessing ARIMA model fit}
+\label{sec-8}
+
+\begin{itemize}
+\item Considerable expansion of residual analysis
+\item Plots assess error terms for constant variance, normality, and independence
+\item Properties of the sample autocorrelation of the residuals
+\item Ljung-Box statistic portmanteau test as summary of residual autocorrelation
+\item Overfitting and parameter redundancy
+\end{itemize}
+\section*{Chapter 9: Theory/methods of ARIMA forecasting}
+\label{sec-9}
+
+\begin{itemize}
+\item Forecasting future values based on minimizing mean square forecasting error
+\item Simple cases, extrapolate estimated trend
+\item Autocorrelation, forecasts incorporate those
+\item ARIMA forecasts: computation and properties
+\item Prediction limits assess potential accuracy
+\item Forecasts involving transformation of original series
+\end{itemize}
+\section*{Chapter 10: Extend all the above to seasonal ARIMA models}
+\label{sec-10}
+
+\begin{itemize}
+\item Multiplicative seasonal ARIMA models
+\item Identification, estimation, diagnostics
+\end{itemize}
+\section*{Chapter 11: Intervention analysis, outliers, spurious correlation, and prewhitening}
+\label{sec-11}
+
+\begin{itemize}
+\item intervention models incorporate known external events which have a significant effect on the time series
+\item Develop models to detect and incorporate outliers in time series
+\item spurious correlation and its effects
+\item prewhitening and stochastic regression
+\end{itemize}
+\section*{Chapter 12: Models for heteroscedasticity}
+\label{sec-12}
+
+\begin{itemize}
+\item terms and issues associated with financial time series
+\item Autoregressive conditional heteroscedasticity (ARCH) models
+\item Special case: ARCH(1)
+\item GARCH(p,q): generalized autoregressive conditional heteroscedasticity
+\item identification, maximum likelihood estimation, prediction, and model diagnostics
+\end{itemize}
+\section*{Chapter 13: Spectral analysis}
+\label{sec-13}
+
+\begin{itemize}
+\item Model as linear combinations of sines and cosines
+\item Periodogram measures contribution of frequencies in spectral representation
+\item Modeling with continuous range of frequencies
+\item Spectral densities of ARMA models
+\item Sampling properties of the sample spectral density
+\end{itemize}
+\section*{Chapter 14: Better methods for spectral density estimation}
+\label{sec-14}
+
+\begin{itemize}
+\item Introduce smoothed sample spectral density
+\item Bias, variance, leakage, bandwidth, and tapering
+\item Procedure for forming confidence intervals
+\end{itemize}
+\section*{Chapter 15: Threshold models and nonlinear predictors}
+\label{sec-15}
+
+\begin{itemize}
+\item Threshold model: nonlinear time series
+\item How to test for nonlinearity and threshold nonlinearity
+\item Parameter estimation using minimum AIC (MAIC) criterion and conditional least squares
+\item Model diagnostics and extended portmanteau test
+\item Forecasts and prediction intervals from threshold models
+\end{itemize}
+
+
+
+  
+
+\end{document}

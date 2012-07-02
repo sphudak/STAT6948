@@ -1,0 +1,86 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+\geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\title{Guide to Report Writing}
+%\author{G. Jay Kerns}
+\date{\vspace{-0.5in}}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.8.02}}
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\section*{Executive Summary}
+\label{sec-1}
+
+(one page brief description of the study and conclusion)
+\section*{Introduction}
+\label{sec-2}
+
+\begin{itemize}
+\item What is the question?
+\item Why is the question important?
+\item What are the hypotheses?
+\item What is the type of study? (observational, experimental)
+\item What is the type of analysis? (one sample t-test, paired-sample t-test, ANOVA, chi-square test, regression, \ldots{})
+\end{itemize}
+\section*{Describe data collection techniques}
+\label{sec-3}
+
+\begin{itemize}
+\item Describe data collection procedures
+\item Discuss limitations of data collection procedure
+\end{itemize}
+\section*{Summary Information}
+\label{sec-4}
+
+\begin{itemize}
+\item Numeric Summary
+\begin{itemize}
+\item Discrete – frequency, percent, contingency tables, etc.
+\item Continuous – mean, SD, Q1, Q3, etc.
+\end{itemize}
+\item Visual Summary
+  +Side by Side Box Plots, Scatter Plots, Probability Plots, etc.
+\end{itemize}
+\section*{Analysis}
+\label{sec-5}
+
+\begin{itemize}
+\item State hypothesis
+\item Give test statistic and p-value (or Confidence Interval)
+\item Interpret results
+\item Attach tables and/or graphs and make reference to them in your report when necessary.
+\end{itemize}
+\section*{Conclusions}
+\label{sec-6}
+
+\begin{itemize}
+\item Summarize Results
+\item Discuss limitations of the study
+\item Discuss possible further research
+\end{itemize}
+
+\end{document}
