@@ -31,8 +31,8 @@ Please refer to the course schedule.  In the following, exercises should be comp
 - STAT 6948 :: 12, 15, 18, 23
 
 * Chapter 5
-- STAT 5848 :: 
-- STAT 6948 :: 
+- STAT 5848 ::  1, 10, 11, 14, 16
+- STAT 6948 ::  4, 6, 12, 15, 17
 
 * Chapter 6
 - STAT 5848 :: 
