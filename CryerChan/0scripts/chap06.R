@@ -88,17 +88,23 @@ acf(diff(rwalk, difference = 2),
 # Exhibit 6.21
 acf(diff(rwalk), ci.type = 'ma', xaxp = c(0,18,9))
 
-library(uroot)
+# uroot package not available in R-2.15-1
+#library(uroot)
 
 # Carry out the Dickey-Fuller unit root tests
 # Find out the AR order for the differenced series
 ar(diff(rwalk))
 # order 8 is indicated by AIC
 
-library(uroot) 
-ADF.test(rwalk, 
-         selectlags = list(mode = c(1,2,3,4,5,6,7,8), Pmax = 8),
-         itsd = c(1,0,0))
+# need to install CADFtest package
+library(CADFtest)
+CADFtest(rwalk, type = "drift", max.lag.y = 8)
+
+# below doesn't work in R-2.15.1
+#library(uroot) 
+#ADF.test(rwalk, 
+#         selectlags = list(mode = c(1,2,3,4,5,6,7,8), Pmax = 8),
+#         itsd = c(1,0,0))
 
 # which is equivalent to
 # ADF.test(rwalk, selectlags = list(mode = c(1,2,3,4,5,6,7,8)), itsd = c(1,0,0))
@@ -116,14 +122,17 @@ ADF.test(rwalk,
 
 
 # In comparison, setting the true order to be zero for the first difference
-ADF.test(rwalk, selectlags = list(Pmax=0), itsd = c(1,0,0))
+#ADF.test(rwalk, selectlags = list(Pmax=0), itsd = c(1,0,0))
+CADFtest(rwalk, type = "drift", max.lag.y = 0)
+
 
 # Repeat the test with the alternative have an intercept term and a linear trend
 # Run ?uroot to learn more about the selectlags option and the itsd option.
+#ADF.test(rwalk, 
+#         selectlags = list(mode=c(1,2,3,4,5,6,7,8), Pmax = 8),
+#         itsd = c(1,1,0))
+CADFtest(rwalk, type = "trend", max.lag.y = 8)
 
-ADF.test(rwalk, 
-         selectlags = list(mode=c(1,2,3,4,5,6,7,8), Pmax = 8),
-         itsd = c(1,1,0))
 #
 # Similarly, a simplified command is 
 # ADF.test(rwalk,selectlags=list(mode=c(1,2,3,4,5,6,7,8)),itsd=c(1,1,0))
@@ -131,8 +140,9 @@ ADF.test(rwalk,
 
 # Repeat the preceding test but now setting the true order of the first difference
 # as zero.
+#ADF.test(rwalk, selectlags = list(Pmax = 0), itsd = c(1,1,0))
+CADFtest(rwalk, type = "trend", max.lag.y = 0)
 
-ADF.test(rwalk, selectlags = list(Pmax = 0), itsd = c(1,1,0))
 
 # Exhibit 6.22 
 set.seed(92397)
