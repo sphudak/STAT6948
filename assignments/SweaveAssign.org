@@ -1,0 +1,43 @@
+#+TITLE:  STAT 5848/6948 | Applied Regression & Time Series
+#+AUTHOR:    G. Jay Kerns
+#+EMAIL:     gkerns@ysu.edu
+#+DATE:      \vspace{-0.5in}\texttt{Sweave} Assignment
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 author:nil toc:nil date:nil ^:nil num:nil f:nil
+#+EXPORT_EXCLUDE_TAGS: answer
+#+BABEL: :session *R* :results output pp :tangle yes
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [10pt,english]
+#+LaTeX_HEADER: \usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+#+LaTeX_HEADER: \geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+#+latex: \thispagestyle{empty}
+
+The purpose of this assignment is to introduce you to /reproducible research/, that is, the concept of a self-contained statistical report which can be reproduced later, from scratch, by researchers elsewhere.  To do that we are going to use skills you already have (fitting deterministic trends) and focus on developing your =Sweave= skills to accompany them.
+
+* The Data: =ldeaths=
+
+The data file =ldeaths= gives the monthly deaths from bronchitis, emphysema, and asthma in the UK, 1974-1979, for both sexes.
+1. Display and interpret a time series plot of these data.
+2. Now construct a time series plot that uses separate plotting symbols for the various months. Does your interpretation change from that in part (a)?
+3. Use least squares to fit a seasonal-means trend to this time series. Display and interpret the regression output. Save the standardized residuals from the fit for further analysis.
+4. Construct and interpret a time series plot of the standardized residuals. Be sure to use proper plotting symbols to check on seasonality in the standardized residuals.
+#+end_quote  
+
+\noindent
+*The assignment* is to complete the above and email your completed report (that is, your Sweave =.Rnw= file) to me.  Your finished report should have all the =R= code, all the =R= output, all graphs, and should compile without error.
+
+* Getting Started
+1. Familiarize yourself with  /An Sweave Demo/ by Charlie Geyer.
+2. Open =RStudio=.  Click =File -> New... -> R Sweave=.  A new (almost) blank file should open.
+3. Type the following code right below the line which says =\SweaveOpts{concordance=TRUE}= and above the =\end{document}= line. 
+   : <<fig = TRUE>>=
+   : data(ldeaths)
+   : plot(ldeaths, ylab = "Monthly Deaths")
+   : @
+4. Click the button which says =Compile PDF=.
+5. Familiarize yourself with =EasySweaveTemplate.Rnw= and incorporate those ideas into your report. 
+
+* Assignment Deliverables
+Finish your =Sweave= report and email your file =LastName071612.Rnw= to me at =gkerns@ysu.edu=.  Now would be a good time to refresh your memory of the document, "HOWTO Submit Assignments for STAT 5848/6948".  The due date for this assignment is *Monday, July 16, 2012 @ 13:00*.  (Early submission is encouraged.)
+
+

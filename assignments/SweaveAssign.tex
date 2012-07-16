@@ -1,0 +1,74 @@
+% Created 2012-07-13 Fri 11:43
+\documentclass[10pt,english]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+\geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\title{STAT 5848/6948 | Applied Regression \& Time Series}
+%\author{G. Jay Kerns}
+\date{\vspace{-0.5in}\texttt{Sweave} Assignment}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.8.02}}
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty}
+
+The purpose of this assignment is to introduce you to \emph{reproducible research}, that is, the concept of a self-contained statistical report which can be reproduced later, from scratch, by researchers elsewhere.  To do that we are going to use skills you already have (fitting deterministic trends) and focus on developing your \texttt{Sweave} skills to accompany them.
+
+\section*{The Data: \texttt{ldeaths}}
+\label{sec-1}
+
+
+The data file \texttt{ldeaths} gives the monthly deaths from bronchitis, emphysema, and asthma in the UK, 1974-1979, for both sexes.
+\begin{enumerate}
+\item Display and interpret a time series plot of these data.
+\item Now construct a time series plot that uses separate plotting symbols for the various months. Does your interpretation change from that in part (a)?
+\item Use least squares to fit a seasonal-means trend to this time series. Display and interpret the regression output. Save the standardized residuals from the fit for further analysis.
+\item Construct and interpret a time series plot of the standardized residuals. Be sure to use proper plotting symbols to check on seasonality in the standardized residuals.
+\end{enumerate}
+\end{quote}
+
+\noindent
+\textbf{The assignment} is to complete the above and email your completed report (that is, your Sweave \texttt{.Rnw} file) to me.  Your finished report should have all the \texttt{R} code, all the \texttt{R} output, all graphs, and should compile without error.
+\section*{Getting Started}
+\label{sec-2}
+
+\begin{enumerate}
+\item Familiarize yourself with  \emph{An Sweave Demo} by Charlie Geyer.
+\item Open \texttt{RStudio}.  Click \texttt{File -> New... -> R Sweave}.  A new (almost) blank file should open.
+\item Type the following code right below the line which says \texttt{\textbackslash{}SweaveOpts\{concordance=TRUE\}} and above the \texttt{\textbackslash{}end\{document\}} line. 
+\begin{verbatim}
+    <<fig = TRUE>>=
+    data(ldeaths)
+    plot(ldeaths, ylab = "Monthly Deaths")
+    @
+\end{verbatim}
+\item Click the button which says \texttt{Compile PDF}.
+\item Familiarize yourself with \texttt{EasySweaveTemplate.Rnw} and incorporate those ideas into your report.
+\end{enumerate}
+\section*{Assignment Deliverables}
+\label{sec-3}
+
+Finish your \texttt{Sweave} report and email your file \texttt{LastName071612.Rnw} to me at \texttt{gkerns@ysu.edu}.  Now would be a good time to refresh your memory of the document, ``HOWTO Submit Assignments for STAT 5848/6948''.  The due date for this assignment is \textbf{Monday, July 16, 2012 @ 13:00}.  (Early submission is encouraged.)
+
+\end{document}

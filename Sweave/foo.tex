@@ -9,8 +9,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
 \geometry{verbose,tmargin=0.25in,bmargin=0.25in,lmargin=0.25in,rmargin=0.25in}
+\usepackage{Sweave}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+\input{foo-concordance}
 
 \title{An Sweave Demo}
 \author{Charles J. Geyer}
@@ -52,9 +53,14 @@ to get anything that looks like the document)?
 
 Well, we can now include R in our document.  Here's a simple example
 
-<<two>>=
-2 + 2
-@
+\begin{Schunk}
+\begin{Sinput}
+> 2 + 2
+\end{Sinput}
+\begin{Soutput}
+[1] 4
+\end{Soutput}
+\end{Schunk}
 
 What I actually typed in \verb@foo.Rnw@ was
 
@@ -76,17 +82,38 @@ are plain old R.
 Plots get a little more complicated.  First we make something to plot
 (simulate regression data).
 
-<<reg>>=
-n <- 50
-x <- seq(1, n)
-a.true <- 3
-b.true <- 1.5
-y.true <- a.true + b.true * x
-s.true <- 17.3
-y <- y.true + s.true * rnorm(n)
-out1 <- lm(y ~ x)
-summary(out1)
-@
+\begin{Schunk}
+\begin{Sinput}
+> n <- 50
+> x <- seq(1, n)
+> a.true <- 3
+> b.true <- 1.5
+> y.true <- a.true + b.true * x
+> s.true <- 17.3
+> y <- y.true + s.true * rnorm(n)
+> out1 <- lm(y ~ x)
+> summary(out1)
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-36.195 -11.367  -0.757  14.195  33.272 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -2.7706     4.5315  -0.611    0.544    
+x             1.8214     0.1547  11.777 9.19e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 15.78 on 48 degrees of freedom
+Multiple R-squared: 0.7429,	Adjusted R-squared: 0.7375 
+F-statistic: 138.7 on 1 and 48 DF,  p-value: 9.195e-16 
+\end{Soutput}
+\end{Schunk}
 
 (for once we won't show the code chunk itself, look at \verb@foo.Rnw@
 if you want to see what the actual code chunk was).
@@ -94,16 +121,16 @@ if you want to see what the actual code chunk was).
 Figure~\ref{fig:one} (p.~\pageref{fig:one})
 is produced by the following code
 
-<<label=fig1plot,include=FALSE>>=
-plot(x, y)
-abline(out1)
-@
+\begin{Schunk}
+\begin{Sinput}
+> plot(x, y)
+> abline(out1)
+\end{Sinput}
+\end{Schunk}
 
 \begin{figure}
 \begin{center}
-<<label=fig1,fig=TRUE,echo=FALSE>>=
-<<fig1plot>>
-@
+\includegraphics{foo-fig1}
 \end{center}
 \caption{Scatter Plot with Regression Line}
 \label{fig:one}
@@ -167,11 +194,7 @@ in others.  Note the following virtues
 
 \begin{figure}
 \begin{center}
-<<label=fig2,fig=TRUE,echo=FALSE>>=
-out3 <- lm(y ~ x + I(x^2) + I(x^3))
-plot(x, y)
-curve(predict(out3, newdata=data.frame(x=x)), add = TRUE)
-@
+\includegraphics{foo-fig2}
 \end{center}
 \caption{Scatter Plot with Cubic Regression Curve}
 \label{fig:two}
@@ -205,16 +228,13 @@ just works.  This should tell you the main virtue of Sweave.
 It's always correct.  There is never a problem with stale
 cut-and-paste.
 
-<<foo,echo=FALSE,results=hide>>=
-options(scipen=10)
-@
 
 Simple numbers can be plugged into the text with the \verb@\Sexpr@
 command, for example, the quadratic and cubic regression coefficients
 in the preceding regression were
-$\beta_2 = \Sexpr{round(out3$coef[3], 4)}$
+$\beta_2 = -0.0219$
 and
-$\beta_3 = \Sexpr{round(out3$coef[4], 4)}$.
+$\beta_3 = 0.0001$.
 Just magic!
 What I actually typed in \verb@foo.Rnw@ was
 
@@ -224,34 +244,72 @@ What I actually typed in \verb@foo.Rnw@ was
 \verb@and $\beta_3 = \Se@\verb@xpr{round(out3$coef[4], 4)}$.@
 \end{tabbing}
 
-<<foo2,echo=FALSE,results=hide>>=
-options(scipen=0)
-@
 
 The \verb@xtable@ command is used to make tables.  (The following
 is the \verb@Sweave@ of another code chunk that we don't explicitly
 show.  Look at \verb@foo.Rnw@ for details.)
 
-<<blurfle>>=
-out2 <- lm(y ~ x + I(x^2))
-foo <- anova(out1, out2, out3)
-foo
-class(foo)
-dim(foo)
-foo <- as.matrix(foo)
-foo
-@
+\begin{Schunk}
+\begin{Sinput}
+> out2 <- lm(y ~ x + I(x^2))
+> foo <- anova(out1, out2, out3)
+> foo
+\end{Sinput}
+\begin{Soutput}
+Analysis of Variance Table
+
+Model 1: y ~ x
+Model 2: y ~ x + I(x^2)
+Model 3: y ~ x + I(x^2) + I(x^3)
+  Res.Df   RSS Df Sum of Sq      F Pr(>F)
+1     48 11955                           
+2     47 11721  1   233.992 0.9187 0.3428
+3     46 11716  1     5.044 0.0198 0.8887
+\end{Soutput}
+\begin{Sinput}
+> class(foo)
+\end{Sinput}
+\begin{Soutput}
+[1] "anova"      "data.frame"
+\end{Soutput}
+\begin{Sinput}
+> dim(foo)
+\end{Sinput}
+\begin{Soutput}
+[1] 3 6
+\end{Soutput}
+\begin{Sinput}
+> foo <- as.matrix(foo)
+> foo
+\end{Sinput}
+\begin{Soutput}
+  Res.Df      RSS Df  Sum of Sq         F    Pr(>F)
+1     48 11954.86 NA         NA        NA        NA
+2     47 11720.86  1 233.992320 0.9187275 0.3428203
+3     46 11715.82  1   5.043915 0.0198040 0.8887003
+\end{Soutput}
+\end{Schunk}
 
 So now we are ready to turn the matrix \verb@foo@
 into Table~\ref{tab:one}
 
-<<label=tab1,echo=FALSE,results=tex>>=
-library(xtable)
-print(xtable(foo, caption = "ANOVA Table", label = "tab:one",
-    digits = c(0, 0, 2, 0, 2, 3, 3)), table.placement = "tbp",
-    caption.placement = "top")
-@
-
+% latex table generated in R 2.15.1 by xtable 1.7-0 package
+% Fri Jul 13 08:04:58 2012
+\begin{table}[tbp]
+\begin{center}
+\caption{ANOVA Table}
+\label{tab:one}
+\begin{tabular}{rrrrrrr}
+  \hline
+ & Res.Df & RSS & Df & Sum of Sq & F & Pr($>$F) \\ 
+  \hline
+1 & 48 & 11954.86 &  &  &  &  \\ 
+  2 & 47 & 11720.86 & 1 & 233.99 & 0.919 & 0.343 \\ 
+  3 & 46 & 11715.82 & 1 & 5.04 & 0.020 & 0.889 \\ 
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
 using the R chunk
 
 \begin{tabbing}
