@@ -1,8 +1,9 @@
 # chap11.R
+library(TSA)
 
 # Exhibit 11.1
 data(airmiles)
-plot(log(airmiles),ylab='Log(airmiles)',xlab='Year', )
+plot(log(airmiles),ylab="Log(airmiles)",xlab="Year", )
 
 # Exhibit 11.5
 acf(as.vector(diff(diff(window(log(airmiles),end=c(2001,8)),12))),lag.max=48)
@@ -12,7 +13,7 @@ air.m1=arimax(log(airmiles),order=c(0,1,1),seasonal=list(order=c(0,1,1),
 period=12),xtransf=data.frame(I911=1*(seq(airmiles)==69),
 I911=1*(seq(airmiles)==69)),
 transfer=list(c(0,0),c(1,0)),xreg=data.frame(Dec96=1*(seq(airmiles)==12),
-Jan97=1*(seq(airmiles)==13),Dec02=1*(seq(airmiles)==84)),method='ML')
+Jan97=1*(seq(airmiles)==13),Dec02=1*(seq(airmiles)==84)),method="ML")
 # Additive outliers are incorporated as dummy variables in xreg.
 # Transfer function components are incorporated by the xtransf and transfer
 # arguments.
@@ -34,8 +35,8 @@ points(fitted(air.m1))
 # Exhibit 11.8
 Nine11p=1*(seq(airmiles)==69)
 plot(ts(Nine11p*(-0.0949)+
-filter(Nine11p,filter=.8139,method='recursive',side=1)*(-0.2715),
-frequency=12,start=1996),type='h',ylab='9/11 Effects')
+filter(Nine11p,filter=.8139,method="recursive",side=1)*(-0.2715),
+frequency=12,start=1996),type="h",ylab="9/11 Effects")
 abline(h=0)
 
 # Exhibit 11.9 
@@ -44,7 +45,7 @@ y=arima.sim(model=list(ar=.8,ma=.5),n.start=158,n=100)
 y[10]
 y[10]=10
 y=ts(y,freq=1,start=1)
-plot(y,type='o')
+plot(y,type="o")
 acf(y)
 pacf(y)
 eacf(y)
@@ -65,7 +66,7 @@ detectIO(m3)
 tsdiag(m3)
 m3
 
-plot(y,type='b') 
+plot(y,type="b") 
 arrows(30,6, 11,9.8, length=.1,angle=20)
 text(34,6.2, "AO")
 
@@ -89,7 +90,7 @@ X=rnorm(105)
 Y=zlag(X,2)+.5*rnorm(105)
 X=ts(X[-(1:5)],start=1,freq=1)
 Y=ts(Y[-(1:5)],start=1,freq=1)
-ccf(X,Y,ylab='CCF')
+ccf(X,Y,ylab="CCF")
 
 
 # Exhibit 11.12
@@ -124,25 +125,25 @@ plot(milk.electricity,yax.flip=T)
 
 # Exhibit 11.15
 ccf(as.numeric(milk.electricity[,1]),as.numeric(milk.electricity[,2]),
-main='milk & electricity',ylab='CCF')
+main="milk & electricity",ylab="CCF")
 # The as.numeric function strips the time series attribute from the time series.
 # This is done to nullify the default way the ccf function plots the cross-correlations.
 # You may want to repeat the command without the as.numeric function to see 
 # the default labels of the lags according to the period of the data.
-# ccf((milk.electricity[,1]),(milk.electricity[,2]), main='milk & electricity',ylab='CCF')
+# ccf((milk.electricity[,1]),(milk.electricity[,2]), main="milk & electricity",ylab="CCF")
 
 
 # Exhibit 11.16
 me.dif=ts.intersect(diff(diff(milk,12)),diff(diff(log(electricity),12)))
 prewhiten(as.numeric(me.dif[,1]),as.numeric(me.dif[,2]),
-,ylab='CCF' )
+,ylab="CCF" )
 
 # Exhibit 11.17
 data(bluebird)
 plot(bluebird,yax.flip=T)
 
 # Exhibit 11.18
-prewhiten(y=diff(bluebird)[,1],x=diff(bluebird)[,2],main="Price & Sales",ylab='CCF')
+prewhiten(y=diff(bluebird)[,1],x=diff(bluebird)[,2],main="Price & Sales",ylab="CCF")
 # As the time series are of unit period, there is no need to apply the as.numeric 
 # function.
 
@@ -153,7 +154,7 @@ chip.m1=lm(sales~price,data=bluebird)
 summary(chip.m1)
 
 # Exhibit 11.20
-acf(residuals(chip.m1),ci.type='ma')
+acf(residuals(chip.m1),ci.type="ma")
 
 # Exhibit 11.21
 pacf(residuals(chip.m1))

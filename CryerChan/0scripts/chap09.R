@@ -28,19 +28,19 @@ summary(model4)
 newhar.=harmonic(ts(rep(1,24), start=c(1976,1),freq=12),1)
 # Compute and plot the forecasts.
 plot(m5.tempdub,n.ahead=24,n1=c(1972,1),newxreg=newhar.,
- type='b',ylab='Temperature',xlab='Year')
+ type="b",ylab="Temperature",xlab="Year")
 
 # Exhibit 9.3 
 data(color)
 m1.color=arima(color,order=c(1,0,0))
-plot(m1.color,n.ahead=12,type='b', xlab='Time', ylab='Color Property')
+plot(m1.color,n.ahead=12,type="b", xlab="Time", ylab="Color Property")
 # add the horizontal line at the estimated mean ("intercept") 
-abline(h=coef(m1.color)[names(coef(m1.color))=='intercept'])
+abline(h=coef(m1.color)[names(coef(m1.color))=="intercept"])
 
 
 # Exhibit 9.4
 data(hare)
 m1.hare=arima(sqrt(hare),order=c(3,0,0))
-plot(m1.hare, n.ahead=25,type='b',xlab='Year',ylab='Sqrt(hare)')
-abline(h=coef(m1.hare)[names(coef(m1.hare))=='intercept'])
+plot(m1.hare, n.ahead=25,type="b",xlab="Year",ylab="Sqrt(hare)")
+abline(h=coef(m1.hare)[names(coef(m1.hare))=="intercept"])
 

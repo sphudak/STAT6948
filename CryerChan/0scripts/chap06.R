@@ -1,4 +1,6 @@
-# Chap6.R
+# chap6.R
+library(TSA)
+
 
 # Exhibit 6.5
 data(ma1.1.s)
@@ -14,7 +16,7 @@ acf(ma1.1.s) # see the new tickmarks
 # each lag?
 
 # Exhibit 6.6
-acf(ma1.1.s, ci.type = 'ma', xaxp = c(0,20,10))
+acf(ma1.1.s, ci.type = "ma", xaxp = c(0,20,10))
 
 # Exhibit 6.7
 data(ma1.2.s)
@@ -25,7 +27,7 @@ data(ma2.s)
 acf(ma2.s, xaxp = c(0,20,10))
 
 # Exhibit 6.9
-acf(ma2.s, ci.type='ma', xaxp = c(0,20,10))
+acf(ma2.s, ci.type="ma", xaxp = c(0,20,10))
 
 # Exhibit 6.10
 data(ar1.s)
@@ -44,7 +46,7 @@ pacf(ar2.s, xaxp = c(0,20,10))
 
 # Exhibit 6.14
 data(arma11.s)
-plot(arma11.s, type = 'b', ylab = expression(y[t]))
+plot(arma11.s, type = "b", ylab = expression(y[t]))
 
 # Exhibit 6.15
 acf(arma11.s, xaxp = c(0,20,10))
@@ -58,12 +60,12 @@ eacf(arma11.s)
 # If desirable,  a title can be added to the EACF table by the
 # following command.
 
-cat('Exhibit 6.17\n'); eacf(arma11.s)
+cat("Exhibit 6.17\n"); eacf(arma11.s)
 
 # Exhibit 6.18
 data(oil.price)
 acf(as.vector(oil.price), 
-    main = 'Sample ACF of the Oil Price Time Series',
+    main = "Sample ACF of the Oil Price Time Series",
     xaxp = c(0,24,12))
 # The as.vector function strips the ts attaribute of oil.price in order to 
 # prevent the plotting convention for seasonal time series.
@@ -71,22 +73,22 @@ acf(as.vector(oil.price),
 # Try the following command to appreciate the effects of applying the as.vector
 # function.
 
-acf(oil.price, main = 'Sample ACF of the Oil Price Time Series')
+acf(oil.price, main = "Sample ACF of the Oil Price Time Series")
 # The tickmark 1 on the x-axis now refers to a lag of
 # 1 period with each period containing 12 months, so it is lag 12!
 
 # Exhibit 6.19
 acf(diff(as.vector(log(oil.price))), 
-    main = 'Sample ACF of the Difference of the Oil Price Time Series',
+    main = "Sample ACF of the Difference of the Oil Price Time Series",
     xaxp = c(0,24,12))
 
 # Exhibit 6.20
 data(rwalk)
 acf(diff(rwalk, difference = 2), 
-    ci.type = 'ma', xaxp = c(0,18,9))
+    ci.type = "ma", xaxp = c(0,18,9))
 
 # Exhibit 6.21
-acf(diff(rwalk), ci.type = 'ma', xaxp = c(0,18,9))
+acf(diff(rwalk), ci.type = "ma", xaxp = c(0,18,9))
 
 # uroot package not available in R-2.15-1
 #library(uroot)
@@ -100,7 +102,7 @@ ar(diff(rwalk))
 library(CADFtest)
 CADFtest(rwalk, type = "drift", max.lag.y = 8)
 
-# below doesn't work in R-2.15.1
+# below doesn"t work in R-2.15.1
 #library(uroot) 
 #ADF.test(rwalk, 
 #         selectlags = list(mode = c(1,2,3,4,5,6,7,8), Pmax = 8),
@@ -148,7 +150,7 @@ CADFtest(rwalk, type = "trend", max.lag.y = 0)
 set.seed(92397)
 test <- arima.sim(model = list(ar=c(rep(0,11),.8), ma = c(rep(0,11),0.7)), n = 120)
 res <- armasubsets(y = test, nar = 14, nma = 14, 
-                  y.name = 'test', ar.method = 'ols')
+                  y.name = "test", ar.method = "ols")
 plot(res)
 
 # A title may be added to the plot, by adding the main="..." option
@@ -173,7 +175,7 @@ acf(log(larain), xaxp = c(0,20,10)) # note the main heading now includes the dat
 
 # Exhibit 6.25
 data(color)
-acf(color, ci.type = 'ma')
+acf(color, ci.type = "ma")
 
 # Exhibit 6.26
 pacf(color)
@@ -195,7 +197,7 @@ eacf(diff(log(oil.price)))
 
 # Exhibit 6.31
 res <- armasubsets(y = diff(log(oil.price)), nar = 7, nma = 7,
-                  y.name = 'test', ar.method = 'ols')
+                  y.name = "test", ar.method = "ols")
 plot(res)
 
 # Exhibit 6.32

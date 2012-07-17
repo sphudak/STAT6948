@@ -1,11 +1,12 @@
-# Chapter 13 Scripts
+# chap13.R
+library(TSA)
 
 # Exhibit 13.1
 t=1:96 # n=96
 cos1=cos(2*pi*t*4/96)
 cos2=cos(2*pi*(t*14/96+.3))
-plot(t,cos1, type='o', ylab='Cosines')
-lines(t,cos2,lty='dotted',type='o',pch=4)
+plot(t,cos1, type="o", ylab="Cosines")
+lines(t,cos2,lty="dotted",type="o",pch=4)
 
 # Exhibit 13.2
 # You may want to plot many of the graphs at fullscreen resolution to see more detail
@@ -13,7 +14,7 @@ t=1:96 # n=96
 cos1=cos(2*pi*t*4/96)
 cos2=cos(2*pi*(t*14/96+.3))
 y=2*cos1+3*cos2
-plot(t,y,type='o',ylab=expression(y[t]))
+plot(t,y,type="o",ylab=expression(y[t]))
 
 
 # Exhibit 13.3
@@ -33,7 +34,7 @@ A1=rnorm(1,0,2); B1=rnorm(1,0,2)  # sample normal "amplitudes"
 A2=rnorm(1,0,3); B2=rnorm(1,0,3)
 w=2*pi*t
 y=A1*cos(w*freq1)+B1*sin(w*freq1)+A2*cos(w*freq2)+B2*sin(w*freq2)+rnorm(96,0,1)
-plot(t,y,type='o',ylab=expression(y[t]))
+plot(t,y,type="o",ylab=expression(y[t]))
 
 # Exhibit 13.5
 # Assumes that y was created for Exhibit 13.4 above
@@ -42,20 +43,20 @@ abline(h=0)
 
 # Exhibit 13.6
 data(star)
-plot(star,xlab='Day',ylab='Brightness')
+plot(star,xlab="Day",ylab="Brightness")
 
 # Exhibit 13.7
-periodogram(star,ylab='Variable Star Periodogram');  abline(h=0)
+periodogram(star,ylab="Variable Star Periodogram");  abline(h=0)
 
 
 
 # Exhibit 13.8 aliasing
 t=seq(0,8,by=.05)
-plot(t,cos(2*pi*t/4),axes=F,type='l',ylab=expression(Y[t]),
- xlab='Discrete Time t')
+plot(t,cos(2*pi*t/4),axes=F,type="l",ylab=expression(Y[t]),
+ xlab="Discrete Time t")
 axis(1,at=c(1,2,3,4,5,6,7))
 axis(1); axis(2); box()
-lines(t,cos(2*pi*t*3/4),lty='dashed',type='l')
+lines(t,cos(2*pi*t*3/4),lty="dashed",type="l")
 abline(h=0)
 points(x=c(0:8),y=cos(2*pi*c(0:8)/4),pch=19)
 
@@ -108,10 +109,10 @@ set.seed(271435)
 n=200
 phi=-0.6
 y=arima.sim(model=list(ar=phi),n=n)
-sp=spec(y,log='no',xlab='Frequency',ylab='Sample Spectral Density',main='',
-sub='',demean=T)
+sp=spec(y,log="no",xlab="Frequency",ylab="Sample Spectral Density",main="",
+sub="",demean=T)
 lines(sp$freq,ARMAspec(model=list(ar=phi),freq=sp$freq,plot=F)$spec,
-lty='dotted')
+lty="dotted")
 abline(h=0)
 
 # Exhibits 13.21,13.22, 13.23, 13.24, 13.25, & 13.26
@@ -124,7 +125,7 @@ n=96; df=5 # df used only when generating non-normal white noise terms
 for (i in 1:nrepl){
 # Remove the # signs for the next three lines when generating non-normal white noise terms
 #y=arima.sim(model=list(ar=c(phi1,phi2),ma=c(-theta1,-theta2)),
-# rand.gen=function(n,...){if(df<=2) stop('df must be greater than 2') else
+# rand.gen=function(n,...){if(df<=2) stop("df must be greater than 2") else
 # return(rt(n,...)*sqrt((df-2)/df)) },n=n,df=df)
 # comment out the line below when generating non-normal white noise terms
 y=arima.sim(model=list(ar=c(phi1,phi2),ma=c(-theta1,-theta2)),n=n)
@@ -142,19 +143,19 @@ mean(abs(cor(t(specm))[outer(1:dim1,1:dim1,"<")])>1.96/sqrt(n))
 sdf1=ARMAspec(model=list(ar=c(phi1,phi2),ma=-c(theta1,theta2)),freq=res$freq,
 plot=F)$spec
 plot(y=sdf1,x=res$freq,
-xlab='Frequency',ylab='Average Spectral Density Estimates',type='l',
-main='',ylim=extendrange(c(means,sdf1)))
+xlab="Frequency",ylab="Average Spectral Density Estimates",type="l",
+main="",ylim=extendrange(c(means,sdf1)))
 points(y=means,x=res$freq)
 abline(h=0)
 
 m=round(n/2)
-plot(y=sdf1[-m],x=res$freq[-m],xlab='Frequency',
- ylab='Standard Deviation of Spectral Density Estimate',
- type='l',main='',ylim=extendrange(c(sqrt(vars[-m]),sdf1)))
+plot(y=sdf1[-m],x=res$freq[-m],xlab="Frequency",
+ ylab="Standard Deviation of Spectral Density Estimate",
+ type="l",main="",ylim=extendrange(c(sqrt(vars[-m]),sdf1)))
 points(y=sqrt(vars[-m]),x=res$freq[-m])
 abline(h=0)
 
 # Exhibits 13.23 & 13.25
 # Replace 40 to obtain any frequency needed
 qqplot(qchisq(((1:nrepl)-.5)/nrepl,df=2),specm[40,],
- xlab='Chi-Square Quantitles',ylab='Sample Spectral Distribution')
+ xlab="Chi-Square Quantitles",ylab="Sample Spectral Distribution")

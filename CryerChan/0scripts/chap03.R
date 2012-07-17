@@ -1,3 +1,4 @@
+# Chapter 3 - Trends
 
 library(TSA)
 
@@ -9,7 +10,7 @@ summary(model1)
 
 # Exhibit 3.2
 # rwalk contains a simulated random walk
-plot(rwalk, type = 'o', ylab = 'y')
+plot(rwalk, type = "o", ylab = "y")
 abline(model1) # add the fitted least squares line
 
 # Exhibit 3.3
@@ -32,7 +33,7 @@ summary(model4)
 
 # Exhibit 3.6
 plot(ts(fitted(model4), freq = 12, start = c(1964,1)),
-     ylab = 'Temperature', type = 'l',
+     ylab = "Temperature", type = "l",
      ylim = range(c(fitted(model4),tempdub))) # ensures the 
 # y axis has a range that fits the raw data and the fitted values
 points(tempdub)
@@ -43,40 +44,40 @@ model1 <- lm(rwalk ~ time(rwalk))
 summary(model1)
 
 # Exhibit 3.8
-plot(y = rstudent(model3), x = as.vector(time(tempdub)), xlab = 'Time',
-     ylab = 'Standardized Residuals', type = 'o')
+plot(y = rstudent(model3), x = as.vector(time(tempdub)), xlab = "Time",
+     ylab = "Standardized Residuals", type = "o")
 
 # Exhibit 3.9
 plot(y = rstudent(model3), x = as.vector(time(tempdub)),
-     xlab = 'Time', ylab = 'Standardized Residuals', type = 'l')
+     xlab = "Time", ylab = "Standardized Residuals", type = "l")
 points(y = rstudent(model3), x = as.vector(time(tempdub)),
        pch = as.vector(season(tempdub)))
 
 # Exhibit 3.10
 plot(y = rstudent(model3), x = as.vector(fitted(model3)),
-     xlab = 'Fitted Trend Values', ylab = 'Standardized Residuals', type = "n")
+     xlab = "Fitted Trend Values", ylab = "Standardized Residuals", type = "n")
 points(y = rstudent(model3), x = as.vector(fitted(model3)),
        pch = as.vector(season(tempdub)))
 
 # Exhibit 3.11
-hist(rstudent(model3), xlab = 'Standardized Residuals', main = '')
+hist(rstudent(model3), xlab = "Standardized Residuals", main = "")
 
 # Exhibit 3.12
-qqnorm(rstudent(model3), main = '')
+qqnorm(rstudent(model3), main = "")
 
 # Exhibit 3.13
-acf(rstudent(model3), main = '')
+acf(rstudent(model3), main = "")
 
 # Exhibit 3.14
 plot(y = rstudent(model1), x = as.vector(time(rwalk)),
-     ylab = 'Standardized Residuals', xlab = 'Time', type = 'o')
+     ylab = "Standardized Residuals", xlab = "Time", type = "o")
 
 # Exhibit 3.15
 plot(y = rstudent(model1), x = fitted(model1),
-     ylab = 'Standardized Residuals', xlab = 'Fitted Trend Values', type = 'p')
+     ylab = "Standardized Residuals", xlab = "Fitted Trend Values", type = "p")
 
 # Exhibit 3.16
-acf(rstudent(model1), main = '')
+acf(rstudent(model1), main = "")
 
 
 

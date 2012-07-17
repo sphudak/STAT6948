@@ -1,10 +1,11 @@
 # chap8.R
+library(TSA)
 
 # Exhibit 8.1
 data(color)
 m1.color <- arima(color, order = c(1,0,0))
 m1.color
-plot(rstandard(m1.color), ylab = 'Standardized residuals', type = 'b')
+plot(rstandard(m1.color), ylab = "Standardized residuals", type = "b")
 abline(h = 0)
 
 # Exhibit 8.2
@@ -18,15 +19,15 @@ m2.hare
 # Note that the intercept term is actually the mean in the centered form
 # of the ARMA model, i.e. if y(t)=sqrt(hare)-intercept, then the model is
 # y(t)=0.919*y(t-1)-0.5313*y(t-3)+e(t) 
-# So the "ture" intercept equals 5.6889*(1-0.919+0.5313)=3.483, as stated in
+# So the "true" intercept equals 5.6889*(1-0.919+0.5313)=3.483, as stated in
 # the book!
-plot(rstandard(m2.hare), ylab = 'Standardized residuals', type = 'b')
+plot(rstandard(m2.hare), ylab = "Standardized residuals", type = "b")
 abline(h = 0)
 
 # Exhibit 8.3
 data(oil.price)
 m1.oil <- arima(log(oil.price), order = c(0,1,1))
-plot(rstandard(m1.oil), ylab = 'Standardized residuals', type = 'l')
+plot(rstandard(m1.oil), ylab = "Standardized residuals", type = "l")
 abline(h = 0)
 
 # Exhibit 8.4
@@ -42,11 +43,11 @@ qqnorm(residuals(m1.oil))
 qqline(residuals(m1.oil))
 
 # Exhibit 8.9
-acf(residuals(m1.color), main = 'Sample ACF of Residuals from AR(1) Model for Color')
+acf(residuals(m1.color), main = "Sample ACF of Residuals from AR(1) Model for Color")
 
 # Exhibit 8.10
 acf(residuals(arima(sqrt(hare), order = c(2,0,0))),
-    main = 'Sample ACF of Residuals from AR(2) Model for Hare')
+    main = "Sample ACF of Residuals from AR(2) Model for Hare")
 
 # Exhibit 8.11
 acf(residuals(m1.color), plot = FALSE)$acf

@@ -1,5 +1,4 @@
-# Chap7.R
-
+# chap7.R
 library(TSA)
 
 # Below is a function that computes the method of moments estimator of
@@ -15,51 +14,59 @@ estimate.ma1.mom <- function(x){
 
 # Exhibit 7.1
 data(ma1.2.s)
+# true value is theta = -0.9 (from book)
 estimate.ma1.mom(ma1.2.s)
 
 data(ma1.1.s)
+# true value is theta = 0.9 (from book)
 estimate.ma1.mom(ma1.1.s)
 
 set.seed(1234)
 ma1.3.s <- arima.sim(list(ma = 0.9), n = 60)
+# no real, only complex roots here
 estimate.ma1.mom(ma1.3.s)
 
 ma1.4.s <- arima.sim(list(ma = -0.5), n = 60) 
+# true value is theta = -0.9 (from book)
 estimate.ma1.mom(ma1.4.s)
-arima(ma1.4.s, order = c(0,0,1), method = 'CSS', include.mean = FALSE)
+# arima estimation much better
+arima(ma1.4.s, order = c(0,0,1), method = "CSS", include.mean = FALSE)
 
 data(ar1.s)
-ar(ar1.s, order.max = 1, AIC = FALSE, method = 'yw')
+# true value is phi = 0.9 (from book)
+ar(ar1.s, order.max = 1, AIC = FALSE, method = "yw")
 
 data(ar1.2.s)
-ar(ar1.2.s, order.max = 1, AIC = FALSE, method = 'yw')
+# true value is phi = 0.4 (from book)
+ar(ar1.2.s, order.max = 1, AIC = FALSE, method = "yw")
 
 data(ar2.s)
-ar(ar2.s, order.max = 2, AIC = FALSE, method = 'yw')
+# true values are phi1 = 1.5, phi2 = -0.75 (from book)
+ar(ar2.s, order.max = 2, AIC = FALSE, method = "yw")
 
 # Exhibit 7.4
 data(ar1.s)
-ar(ar1.s, order.max = 1, AIC = FALSE, method = 'yw') # method of moments
-ar(ar1.s, order.max = 1, AIC = FALSE, method = 'ols') # conditional sum of squares
-ar(ar1.s, order.max = 1, AIC = FALSE, method = 'mle') # maximum likelihood
+ar(ar1.s, order.max = 1, AIC = FALSE, method = "yw") # method of moments
+ar(ar1.s, order.max = 1, AIC = FALSE, method = "ols") # conditional sum of squares
+ar(ar1.s, order.max = 1, AIC = FALSE, method = "mle") # maximum likelihood
 # The AIC option is set to be FALSE otherwise the function will choose
 # the AR order by minimizing AIC, so that zero order might be chosen.
 
 data(ar1.2.s)
-ar(ar1.2.s, order.max = 1, AIC = FALSE, method = 'yw') # method of moments
-ar(ar1.2.s, order.max = 1, AIC = FALSE, method = 'ols') # conditional sum of squares
-ar(ar1.2.s, order.max = 1, AIC = FALSE, method = 'mle') # maximum likelihood
+ar(ar1.2.s, order.max = 1, AIC = FALSE, method = "yw") # method of moments
+ar(ar1.2.s, order.max = 1, AIC = FALSE, method = "ols") # conditional sum of squares
+ar(ar1.2.s, order.max = 1, AIC = FALSE, method = "mle") # maximum likelihood
 
 # Exhibit 7.5
 data(ar2.s)
-ar(ar2.s, order.max = 2, AIC = FALSE, method = 'yw') # method of moments
-ar(ar2.s, order.max = 2, AIC = FALSE, method = 'ols') # conditional sum of squares
-ar(ar2.s, order.max = 2, AIC = FALSE, method = 'mle') # maximum likelihood
+ar(ar2.s, order.max = 2, AIC = FALSE, method = "yw") # method of moments
+ar(ar2.s, order.max = 2, AIC = FALSE, method = "ols") # conditional sum of squares
+ar(ar2.s, order.max = 2, AIC = FALSE, method = "mle") # maximum likelihood
 
 # Exhibit 7.6
 data(arma11.s)
-arima(arma11.s, order = c(1,0,1), method = 'CSS') # conditional sum of squares
-arima(arma11.s, order = c(1,0,1), method = 'ML') # maximum likelihood
+arima(arma11.s, order = c(1,0,1), method = "CSS") # conditional sum of squares
+arima(arma11.s, order = c(1,0,1), method = "ML") # maximum likelihood
 # 
 # Recall that R uses the plus convention whereas our book uses the minus 
 # convention in the specification of the MA part, i.e. R specifies an
@@ -69,9 +76,9 @@ arima(arma11.s, order = c(1,0,1), method = 'ML') # maximum likelihood
 
 # Exhibit 7.7
 data(color)
-ar(color, order.max = 1, AIC = FALSE, method = 'yw') # method of moments
-ar(color, order.max = 1, AIC = FALSE, method = 'ols') # conditional sum of squares
-ar(color, order.max = 1, AIC = FALSE, method = 'mle') # maximum likelihood
+ar(color, order.max = 1, AIC = FALSE, method = "yw") # method of moments
+ar(color, order.max = 1, AIC = FALSE, method = "ols") # conditional sum of squares
+ar(color, order.max = 1, AIC = FALSE, method = "mle") # maximum likelihood
 
 
 # Exhibit 7.8
@@ -80,8 +87,8 @@ arima(sqrt(hare), order = c(3,0,0))
 
 # Exhibit 7.9
 data(oil.price)
-arima(log(oil.price), order = c(0,1,1), method = 'CSS') # conditional sum of squares
-arima(log(oil.price), order = c(0,1,1), method = 'ML') # maximum likelihood
+arima(log(oil.price), order = c(0,1,1), method = "CSS") # conditional sum of squares
+arima(log(oil.price), order = c(0,1,1), method = "ML") # maximum likelihood
 
 # Exhibit 7.10
 

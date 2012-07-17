@@ -1,11 +1,12 @@
 # Chap12.R
+library(TSA)
 
 # Exhibit 12.1
 data(CREF)
 plot(CREF)
 t1=477;t2=508
 polygon(x=c(t1,t1,t2,t2,t1),
-y=c(min(CREF)-10,max(CREF)+10,max(CREF)+10,min(CREF)-10,min(CREF)-10),col='gray')
+y=c(min(CREF)-10,max(CREF)+10,max(CREF)+10,min(CREF)-10,min(CREF)-10),col="gray")
 lines(CREF)
 
 
@@ -14,7 +15,7 @@ r.cref=diff(log(CREF))*100
 plot(r.cref)
 t1=476;t2=507
 polygon(x=c(t1,t1,t2,t2,t1),
-y=c(-2,2.7,2.7,-2,-2),col='gray')
+y=c(-2,2.7,2.7,-2,-2),col="gray")
 lines(r.cref)
 abline(h=0)
 
@@ -60,12 +61,12 @@ jarque.bera.test(r.cref)
 # Exhibit 12.11
 set.seed(1235678)
 garch01.sim=garch.sim(alpha=c(.01,.9),n=500)
-plot(garch01.sim,type='l',ylab=expression(r[t]),xlab='t')
+plot(garch01.sim,type="l",ylab=expression(r[t]),xlab="t")
 
 # Exhibit 12.12
 set.seed(1234567)
 garch11.sim=garch.sim(alpha=c(0.02,0.05),beta=.9,n=500)
-plot(garch11.sim,type='l',ylab=expression(r[t]),xlab='t')
+plot(garch11.sim,type="l",ylab=expression(r[t]),xlab="t")
 
 # Exhibit 12.13
 acf(garch11.sim)
@@ -110,7 +111,7 @@ m1=garch(x=r.cref,order=c(1,1))
 summary(m1)
 
 # Exhibit 12.26
-plot(residuals(m1),type='h',ylab='standardized residuals')
+plot(residuals(m1),type="h",ylab="standardized residuals")
 
 # Exhibit 12.27
 qqnorm(residuals(m1))
@@ -120,10 +121,10 @@ qqline(residuals(m1))
 acf(residuals(m1)^2,na.action=na.omit)
 
 # Exhibit 12.29
-gBox(m1,method='squared')
+gBox(m1,method="squared")
 
 
-gBox(m1,lags=20, plot=F,method='squared')$pvalue
+gBox(m1,lags=20, plot=F,method="squared")$pvalue
 # Exhibit 12.30
 acf(abs(residuals(m1)),na.action=na.omit)
 
@@ -137,7 +138,7 @@ AIC(m2)
  
 
 # Exhibit 12.31
-gBox(m1,method='absolute')
+gBox(m1,method="absolute")
 
 #Further model diagnostic of the fitted GARCH(1,1) model for the CREF returns
 shapiro.test(na.omit(residuals(m1)))
@@ -146,12 +147,12 @@ skewness(na.omit(residuals(m1)))
 kurtosis(na.omit(residuals(m1)))
 
 # Exhibit 12.32
-plot((fitted(m1)[,1])^2,type='l',ylab='conditional variance',xlab='t')
+plot((fitted(m1)[,1])^2,type="l",ylab="conditional variance",xlab="t")
 
 
 # Exhibit 12.33
 data(usd.hkd)
-plot(ts(usd.hkd$hkrate,freq=1),type='l',xlab='day',ylab='return')
+plot(ts(usd.hkd$hkrate,freq=1),type="l",xlab="day",ylab="return")
 abline(v=203,lwd=2.5,col="gray")
 lines(ts(usd.hkd$hkrate,freq=1))
 
@@ -160,7 +161,7 @@ attach(usd.hkd)
 McLeod.Li.test(arima(hkrate,order=c(1,0,0), xreg=data.frame(outlier1)))
 
 # Exhibit 12.36
-plot(ts(usd.hkd$v,freq=1),type='l',xlab='day', ylab='conditional variance')
+plot(ts(usd.hkd$v,freq=1),type="l",xlab="day", ylab="conditional variance")
 
 
 # Exhibit 12.35 and 12.37 are obtained by running programs in SAS, part of
