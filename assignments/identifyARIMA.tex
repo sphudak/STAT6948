@@ -1,0 +1,120 @@
+% Created 2012-07-18 Wed 15:35
+\documentclass[12pt,english]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+\geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\title{STAT 5848/6948 | Applied Regression \& Time Series}
+%\author{G. Jay Kerns}
+\date{\vspace{-0.5in}}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.8.02}}
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{empty}
+
+The purpose of this assignment is to give you practice identifying ARIMA models.  I have generated data according to assorted ARIMA models, and your goal is to use what you have learned to identify the correct model.
+
+\section*{The Data: \texttt{identifyARIMA.RData}}
+\label{sec-1}
+
+
+I will send the above file to your YSU email address. It is an \texttt{R} workspace which contains five (5) generated time series, namely, \texttt{x1}, \texttt{x2}, \ldots{}, \texttt{x5}.  In order to complete the assignment, you will need to download the workspace and load it into \texttt{R} in the following way:
+\begin{enumerate}
+\item Download and save \texttt{identifyARIMA.RData} somewhere on your computer.
+\item Open \texttt{RStudio}, and go to \texttt{Workspace -> Load Workspace...}.
+\item Navigate to wherever it was you saved \texttt{identifyARIMA.RData} and click \texttt{Open}.
+\end{enumerate}
+That's it.  If you type \texttt{x1} at the command prompt you should see a bunch of numbers.
+\section*{The Assignment:}
+\label{sec-2}
+
+
+\noindent
+For each time series \texttt{x1}, \texttt{x2}, \ldots{}, \texttt{x5}, your goal is to identify and specify the theoretical ARIMA model that generated it.  Here are the tools at your disposal:
+\begin{itemize}
+\item Plots of the original time series and/or differences
+\item Lag plots of assorted orders
+\item Sample ACF and Sample PACF
+\item Extended ACF for mixed models
+\end{itemize}
+\textbf{For each time series} I am looking for three things:
+\begin{enumerate}
+\item The model in words, for example, AR(2).
+\item The mathematical formula for your model.  For example, an AR(2) model with mean zero looks like this:
+   \begin{equation}
+   Y_{t} = \phi_{1}Y_{t - 1} + \phi_{2}Y_{t - 2} + e_{t}
+   \end{equation}
+   You can get this formula in your \texttt{Sweave} report with the following code:
+\begin{verbatim}
+    \begin{equation}
+    Y_{t} = \phi_{1}Y_{t - 1} + \phi_{2}Y_{t - 2} + e_{t}
+    \end{equation}
+\end{verbatim}
+\item Any supporting arguments, work, and/or plots you used to come to your conclusion.
+\end{enumerate}
+\section*{Assignment Deliverables:}
+\label{sec-3}
+
+Email your \texttt{Sweave}  \texttt{.Rnw} file to me at \texttt{gkerns@ysu.edu} by the due date, \textbf{Monday, July 23, 2012 @ 13:00}.  (Early submission is encouraged.)
+\section*{Hints:}
+\label{sec-4}
+
+\begin{itemize}
+\item Try figuring out \texttt{x5} first.
+\item It is not necessary to transform any of the data with \texttt{sqrt}, \texttt{log}, etc.
+\item To take the first difference $\nabla X_{t}$ do \texttt{diff(x)}.  To take the second difference  $\nabla^{2} X_{t}$ do \texttt{diff(diff(x))} or \texttt{diff(x, differences = 2)}, and so forth.
+\item The $\LaTeX$ code for $\theta$, $\mu$, \emph{etc.} is \texttt{\textbackslash{}theta}, \texttt{\textbackslash{}mu}, \emph{etc.}  The code for $\nabla$ and  $\nabla^{2}$ is \texttt{\textbackslash{}nabla} and \texttt{\textbackslash{}nabla\textasciicircum{}\{2\}}.
+\end{itemize}
+\section*{Making your report look pretty:}
+\label{sec-5}
+
+The more comfortable you get working with \texttt{Sweave} files and $\LaTeX$, the more professionalism I am going to expect out of your reports.  For instance, for this assignment, everybody should have at bare minimum a title, author, and clearly delineated problems.
+
+Everybody should have the following line somewhere in their report (above the \texttt{\textbackslash{}begin\{document\}} line, preferably).
+\begin{verbatim}
+ \title{Identifying ARIMA Models Assignment}
+\end{verbatim}
+
+The report should also say who wrote it, with a line somewhere that says something like this:
+\begin{verbatim}
+ \author{Sir Ronald Aylmer Fisher}
+\end{verbatim}
+
+You can divide your report up into sections, say, with different sections addressed to different problems.  For instance, you could do something like this:
+\begin{verbatim}
+ \section{The simulated time series \texttt{x1}}
+
+ Here are a bunch of code chunks and plots about \texttt{x1}.
+
+
+ \section{The simulated time series \texttt{x2}}
+
+ Here are a bunch of code chunks and plots about \texttt{x2}.
+
+ And so forth...
+\end{verbatim}
+
+Some of you are pretty good with $\LaTeX$ already and do not need additional guidance;  make your report as professional as you would anyway.
+
+\end{document}
