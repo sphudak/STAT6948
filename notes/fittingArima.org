@@ -1,0 +1,412 @@
+#+TITLE:     Fitting Nonseasonal ARIMA Models with =R=
+#+AUTHOR:    G. Jay Kerns
+#+EMAIL:     gkerns@ysu.edu
+#+DATE:      \vspace{-0.5in}STAT 5848/6948: Applied Regression and Time Series
+#+OPTIONS:   H:3 num:nil toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t author:nil
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+PROPERTY: session *R*
+#+PROPERTY: exports results
+#+PROPERTY: results value raw
+#+PROPERTY: tangle yes
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LaTeX_CLASS_OPTIONS: [12pt]
+#+LaTeX_HEADER: \usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
+#+LaTeX_HEADER: \geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+For each of the models below we simulate some data according to the model, plot the data, fit the model with =R=, and show where the parameter estimates would go in the model formula.  We use the =Arima= function from the =forecast= package[fn:1] to estimate the parameters.
+
+[fn:1] We could use the =arima= function (notice, lowercase) in base =R= instead and /almost/ all of the code would work without change.  The only difference would be the $ARIMA$ models with differencing and nonzero drift, because the ordinary =arima= function does not have an =include.drift= argument.  Indeed, it turns out to be quite tricky to estimate a drift with base =arima=; see [[http://www.stat.pitt.edu/stoffer/tsa3/Rissues.htm][here]] for a discussion and examples.
+
+#+begin_src R :exports none :results silent
+# This is fittingArima.R
+set.seed(42)
+library(forecast)
+#+end_src
+
+* $MA(3)$ with zero mean
+#+begin_src R :exports code :results silent
+y <- arima.sim(model = list(ma = c(0.3, 0.2, 0.1)), n = 100)
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(0,0,3), include.mean = FALSE)
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/ma3zm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/ma3zm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+Y_{t} = e_{t} + \theta_{1}e_{t - 1} + \theta_{2}e_{t - 2} + \theta_{3}e_{t - 3},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(0,0,3), include.mean = FALSE)
+#+end_src
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+Y_{t} = e_{t} + src_R{tmp[1]} e_{t - 1} + src_R{tmp[2]} e_{t - 2} + src_R{tmp[3]} e_{t - 3},\ t = 1,2,\ldots
+\]
+
+* $AR(2)$ with zero mean
+#+begin_src R :exports code :results silent
+y <- arima.sim(model = list(ar = c(0.3, 0.2)), n = 100)
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(2,0,0), include.mean = FALSE)
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/ar2zm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/ar2zm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+Y_{t} = \phi_{1}Y_{t - 1} + \phi_{2}Y_{t - 2}  + e_{t},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(2,0,0), include.mean = FALSE)
+#+end_src
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+Y_{t} = src_R{tmp[1]} Y_{t - 1} + src_R{tmp[2]} Y_{t - 2}  +  e_{t},\ t = 1,2,\ldots
+\]
+
+* $MA(3)$ with non-zero mean
+#+begin_src R :exports code :results silent
+y <- 5 + arima.sim(model = list(ma = c(0.3, 0.2, 0.1)), n = 100)
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(0,0,3))
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/ma3nzm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/ma3nzm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+(Y_{t} - \mu) = e_{t} + \theta_{1}e_{t - 1} + \theta_{2}e_{t - 2},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(0,0,3))
+#+end_src
+
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+(Y_{t} - src_R{tmp[3]}) = e_{t} + src_R{tmp[1]} e_{t - 1} + src_R{tmp[2]} e_{t - 2},\ t = 1,2,\ldots
+\]
+that is,
+\[
+Y_{t} = src_R{tmp[3]} + e_{t} + src_R{tmp[1]} e_{t - 1} + src_R{tmp[2]} e_{t - 2},\ t = 1,2,\ldots
+\]
+
+* $AR(2)$ with non-zero mean
+#+begin_src R :exports code :results silent
+y <- 21 +  arima.sim(model = list(ar = c(0.3, 0.2)), n = 100)
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(2,0,0))
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/ar2nzm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/ar2nzm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+(Y_{t} - \mu) = \phi_{1}(Y_{t - 1} - \mu) + \phi_{2}(Y_{t - 2} - \mu) + e_{t},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(2,0,0))
+#+end_src
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+(Y_{t} - src_R{tmp[3]} ) = src_R{tmp[1]} (Y_{t - 1} - src_R{tmp[3]} ) + src_R{tmp[2]} (Y_{t - 2} - src_R{tmp[3]} ) + e_{t},\ t = 1,2,\ldots
+\]
+that is,
+\[
+Y_{t} =  src_R{round(tmp[3] * (1 - tmp[1] - tmp[2]), 4)} + src_R{tmp[1]} Y_{t - 1} + src_R{tmp[2]} Y_{t - 2} + e_{t},\ t = 1,2,\ldots
+\]
+
+* $ARMA(1,2)$ with zero mean
+#+begin_src R :exports code :results silent
+y <- arima.sim(model = list(ar = 0.8, ma = c(0.7, 0.6)), n = 189)
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(1,0,2), include.mean = FALSE)
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/arma12zm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/arma12zm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+Y_{t} = \phi Y_{t - 1} + e_{t} + \theta_{1} e_{t - 1} + \theta_{2} e_{t - 2},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(1,0,2), include.mean = FALSE)
+#+end_src
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+Y_{t} = src_R{tmp[1]} Y_{t - 1} + e_{t} + src_R{tmp[2]} e_{t - 1} + src_R{tmp[3]} e_{t - 1},\ t = 1,2,\ldots
+\]
+
+* $ARMA(1,2)$ with non-zero mean
+#+begin_src R :exports code :results silent
+y <- 11 + arima.sim(model = list(ar = 0.8, ma = c(0.7, 0.6)), n = 189)
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(1,0,2))
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/arma12nzm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/arma12nzm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+(Y_{t} - \mu) = \phi(Y_{t - 1} - \mu) +  e_{t} + \theta_{1} e_{t - 1} + \theta_{2} e_{t - 2},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(1,0,2))
+#+end_src
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+(Y_{t} - src_R{tmp[4]} ) = src_R{tmp[1]} (Y_{t - 1} - src_R{tmp[4]} ) + e_{t} + src_R{tmp[2]} e_{t - 1} + src_R{tmp[3]} e_{t - 2},\ t = 1,2,\ldots
+\]
+that is,
+\[
+Y_{t} = src_R{round(tmp[4] - tmp[1] * tmp[4], 4)} + src_R{tmp[1]} Y_{t - 1} + e_{t} + src_R{tmp[2]} e_{t - 1} + src_R{tmp[3]} e_{t - 2},\ t = 1,2,\ldots
+\]
+
+* ARIMA(1,1,2) without drift
+#+begin_src R :exports code :results silent
+ydiff <- arima.sim(model = list(ar = 0.8, ma = c(0.7, 0.6)), n = 196)
+y <- ts(cumsum(ydiff))
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(1,1,2))
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/arima112zm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/arima112zm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+\nabla Y_{t} = \phi \nabla Y_{t - 1} +  e_{t} + \theta_{1} e_{t - 1} + \theta_{2} e_{t - 2},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(1,1,2))
+#+end_src
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+\nabla Y_{t} = src_R{tmp[1]} \nabla Y_{t - 1} + e_{t} + src_R{tmp[2]} e_{t - 1} + src_R{tmp[3]} e_{t - 2},\ t = 1,2,\ldots
+\]
+
+* ARIMA(1,1,2) with drift
+#+begin_src R :exports code :results silent
+ydiff <- 1.5 + arima.sim(model = list(ar = 0.8, ma = c(0.7, 0.6)), n = 196)
+y <- ts(cumsum(ydiff))
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(1,1,2), include.drift = TRUE)
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/arima112nzm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/arima112nzm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+(\nabla Y_{t} - \mu) = \phi(\nabla Y_{t - 1} - \mu) +  e_{t} + \theta_{1} e_{t - 1} + \theta_{2} e_{t - 2},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(1,1,2), include.drift = TRUE)
+#+end_src
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+(\nabla Y_{t} - src_R{tmp[4]} ) = src_R{tmp[1]} (\nabla Y_{t - 1} - src_R{tmp[4]} ) + e_{t} + src_R{tmp[2]} e_{t - 1} + src_R{tmp[3]} e_{t - 2},\ t = 1,2,\ldots
+\]
+that is,
+\[
+Y_{t} = src_R{round(tmp[4] - tmp[1] * tmp[4], 4)} + src_R{tmp[1]} Y_{t - 1} + e_{t} + src_R{tmp[2]} e_{t - 1} + src_R{tmp[3]} e_{t - 2},\ t = 1,2,\ldots
+\]
+
+* ARIMA(1,2,1) without drift
+#+begin_src R :exports code :results silent
+ydiffdiff <- arima.sim(model = list(ar = 0.9, ma = 0.5), n = 175)
+y <- ts(cumsum(cumsum(ydiffdiff)))
+#+end_src
+
+#+begin_src R :exports none :results silent
+fit <- Arima(y, order = c(1,2,1))
+tmp <- round(coef(fit), 4)
+#+end_src
+
+#+begin_src R :exports none :results output graphics :file img/arima121zm.png
+plot(y, ylab = expression(Y[t]))
+#+end_src
+
+#+ATTR_LaTeX: width=4.0in
+#+RESULTS:
+[[file:img/arima121zm.png]]
+
+\noindent
+*The Theoretical Model:* 
+\[
+\nabla^{2} Y_{t} = \phi \nabla^{2} Y_{t - 1} + e_{t} + \theta e_{t - 1},\ t = 1,2,\ldots
+\]
+
+\noindent
+*How to Fit the Model with R:*
+
+#+begin_src R :exports code :eval never 
+Arima(y, order = c(1,2,1))
+#+end_src
+
+#+begin_src R :exports results :results output pp 
+fit
+#+end_src
+
+\noindent
+*The Fitted Model:* 
+\[
+\nabla^{2} Y_{t} = src_R{tmp[1]} \nabla^{2} Y_{t - 1} + e_{t} + src_R{tmp[2]} e_{t - 1},\ t = 1,2,\ldots
+\]

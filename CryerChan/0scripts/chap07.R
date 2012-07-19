@@ -1,6 +1,9 @@
 # chap7.R
 library(TSA)
 
+# need forecast package for Arima()
+library(forecast)
+
 # Below is a function that computes the method of moments estimator of
 # the MA(1) coefficient of an MA(1) model.
 estimate.ma1.mom <- function(x){
@@ -30,7 +33,7 @@ ma1.4.s <- arima.sim(list(ma = -0.5), n = 60)
 # true value is theta = -0.9 (from book)
 estimate.ma1.mom(ma1.4.s)
 # arima estimation much better
-arima(ma1.4.s, order = c(0,0,1), method = "CSS", include.mean = FALSE)
+Arima(ma1.4.s, order = c(0,0,1), method = "CSS", include.mean = FALSE)
 
 data(ar1.s)
 # true value is phi = 0.9 (from book)
@@ -65,8 +68,8 @@ ar(ar2.s, order.max = 2, AIC = FALSE, method = "mle") # maximum likelihood
 
 # Exhibit 7.6
 data(arma11.s)
-arima(arma11.s, order = c(1,0,1), method = "CSS") # conditional sum of squares
-arima(arma11.s, order = c(1,0,1), method = "ML") # maximum likelihood
+Arima(arma11.s, order = c(1,0,1), method = "CSS") # conditional sum of squares
+Arima(arma11.s, order = c(1,0,1), method = "ML") # maximum likelihood
 # 
 # Recall that R uses the plus convention whereas our book uses the minus 
 # convention in the specification of the MA part, i.e. R specifies an
@@ -83,16 +86,16 @@ ar(color, order.max = 1, AIC = FALSE, method = "mle") # maximum likelihood
 
 # Exhibit 7.8
 data(hare)
-arima(sqrt(hare), order = c(3,0,0))
+Arima(sqrt(hare), order = c(3,0,0))
 
 # Exhibit 7.9
 data(oil.price)
-arima(log(oil.price), order = c(0,1,1), method = "CSS") # conditional sum of squares
-arima(log(oil.price), order = c(0,1,1), method = "ML") # maximum likelihood
+Arima(log(oil.price), order = c(0,1,1), method = "CSS") # conditional sum of squares
+Arima(log(oil.price), order = c(0,1,1), method = "ML") # maximum likelihood
 
 # Exhibit 7.10
 
-res <- arima(sqrt(hare), order = c(3,0,0), include.mean = TRUE)
+res <- Arima(sqrt(hare), order = c(3,0,0), include.mean = TRUE)
 set.seed(12345)
 
 coefm.cond.norm <- arima.boot(res, cond.boot = TRUE, is.normal = TRUE, B = 1000, init = sqrt(hare))
