@@ -10,7 +10,7 @@
 #+EXPORT_SELECT_TAGS: 1 2 3 4 5 6 7
 #+EXPORT_EXCLUDE_TAGS: 
 #+LaTeX_HEADER: \usepackage[paperwidth=8.5in,paperheight=11in]{geometry}
-#+LaTeX_HEADER: \geometry{verbose,tmargin=0.5in,bmargin=1in,lmargin=1in,rmargin=1in}
+#+LaTeX_HEADER: \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
 
 Please refer to the course schedule.  In the following, exercises should be completed after the lecture day shown.  Students in STAT 6948 are expected to complete all STAT 5848 problems in addition to the given STAT 6948 problems.
 
@@ -24,7 +24,7 @@ Please refer to the course schedule.  In the following, exercises should be comp
 |         4 | 2--5, 7--10                               | 12, 15, 18, 23    |
 |         5 | 1, 10, 11, 14, 16                         | 4, 6, 12, 15, 17  |
 |         6 | 4, 12, 13, 19, 21, 22, 27, 28, 30, 33, 36 | 7, 31, 32, 34, 38 |
-|         7 |                                           |                   |
+|         7 | 9, 10, 16, 19, 23, 27, 28                 | 11, 20, 25, 29    |
 |         8 |                                           |                   |
 |         9 |                                           |                   |
 |        10 |                                           |                   |
