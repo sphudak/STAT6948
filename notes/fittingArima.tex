@@ -1,4 +1,4 @@
-% Created 2012-07-19 Thu 08:14
+% Created 2012-07-20 Fri 21:00
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -25,15 +25,15 @@
 \hypersetup{
   pdfkeywords={},
   pdfsubject={},
-  pdfcreator={Emacs Org-mode version 7.8.02}}
+  pdfcreator={Emacs Org-mode version 7.8.10}}
 
 \begin{document}
 
 \maketitle
 
 
-For each of the models below we simulate some data according to the model, plot the data, fit the model with \texttt{R}, and show where the parameter estimates would go in the model formula.  We use the \texttt{Arima} function from the \texttt{forecast} package\footnote{We could use the \texttt{arima} function (notice, lowercase) in base \texttt{R} instead and \emph{almost} all of the code would work without change.  The only difference would be the $ARIMA$ models with differencing and nonzero drift, because the ordinary \texttt{arima} function does not have an \texttt{include.drift} argument.  Indeed, it turns out to be quite tricky to estimate a drift with base \texttt{arima}; see \href{http://www.stat.pitt.edu/stoffer/tsa3/Rissues.htm}{here} for a discussion and examples. } to estimate the parameters.
-
+For each of the models below we simulate some data according to the model, plot the data, fit the model with \texttt{R}, and show where the parameter estimates would go in the model formula.  We use the \texttt{Arima} function from the \texttt{forecast} package\footnote{We could use the \texttt{arima} function (notice, lowercase) in base \texttt{R} instead and \emph{almost} all of the code would work without change.  The only difference would be the $ARIMA$ models with differencing and nonzero drift, because the ordinary \texttt{arima} function does not have an \texttt{include.drift} argument.  Indeed, it turns out to be quite tricky to estimate a drift with base \texttt{arima}; see \href{http://www.stat.pitt.edu/stoffer/tsa3/Rissues.htm}{here} for a discussion and examples.
+ } to estimate the parameters.
 
 
 
@@ -83,7 +83,7 @@ AIC=274.1   AICc=274.53   BIC=284.53
 \noindent
 \textbf{The Fitted Model:} 
 \[
-Y_{t} = e_{t} +  0.2485 e_{t - 1} +  0.0809 e_{t - 2} +  -0.0584 e_{t - 3},\ t = 1,2,\ldots
+Y_{t} = e_{t} + 0.2485 e_{t - 1} + 0.0809 e_{t - 2} + -0.0584 e_{t - 3},\ t = 1,2,\ldots
 \]
 \section*{$AR(2)$ with zero mean}
 \label{sec-2}
@@ -132,7 +132,7 @@ AIC=270.15   AICc=270.4   BIC=277.97
 \noindent
 \textbf{The Fitted Model:} 
 \[
-Y_{t} =  0.1924 Y_{t - 1} +  -0.0088 Y_{t - 2}  +  e_{t},\ t = 1,2,\ldots
+Y_{t} = 0.1924 Y_{t - 1} + -0.0088 Y_{t - 2}  +  e_{t},\ t = 1,2,\ldots
 \]
 \section*{$MA(3)$ with non-zero mean}
 \label{sec-3}
@@ -151,7 +151,7 @@ y <- 5 + arima.sim(model = list(ma = c(0.3, 0.2, 0.1)), n = 100)
 \noindent
 \textbf{The Theoretical Model:} 
 \[
-(Y_{t} - \mu) = e_{t} + \theta_{1}e_{t - 1} + \theta_{2}e_{t - 2},\ t = 1,2,\ldots
+(Y_{t} - \mu) = e_{t} + \theta_{1}e_{t - 1} + \theta_{2}e_{t - 2} + \theta_{3}e_{t - 3},\ t = 1,2,\ldots
 \]
 
 \noindent
@@ -181,11 +181,11 @@ AIC=284.8   AICc=285.44   BIC=297.82
 \noindent
 \textbf{The Fitted Model:} 
 \[
-(Y_{t} -  0.044) = e_{t} +  0.3058 e_{t - 1} +  0.165 e_{t - 2},\ t = 1,2,\ldots
+(Y_{t} - 4.9656) = e_{t} + 0.3058 e_{t - 1} + 0.165 e_{t - 2} + 0.044 e_{t - 2},\ t = 1,2,\ldots
 \]
 that is,
 \[
-Y_{t} =  0.044 + e_{t} +  0.3058 e_{t - 1} +  0.165 e_{t - 2},\ t = 1,2,\ldots
+Y_{t} = 4.9656 + e_{t} + 0.3058 e_{t - 1} + 0.165 e_{t - 2} + 0.044 e_{t - 3},\ t = 1,2,\ldots
 \]
 \section*{$AR(2)$ with non-zero mean}
 \label{sec-4}
@@ -234,11 +234,11 @@ AIC=303.85   AICc=304.27   BIC=314.27
 \noindent
 \textbf{The Fitted Model:} 
 \[
-(Y_{t} -  21.0322 ) =  0.3926 (Y_{t - 1} -  21.0322 ) +  0.1709 (Y_{t - 2} -  21.0322 ) + e_{t},\ t = 1,2,\ldots
+(Y_{t} - 21.0322 ) = 0.3926 (Y_{t - 1} - 21.0322 ) + 0.1709 (Y_{t - 2} - 21.0322 ) + e_{t},\ t = 1,2,\ldots
 \]
 that is,
 \[
-Y_{t} =   9.1806 +  0.3926 Y_{t - 1} +  0.1709 Y_{t - 2} + e_{t},\ t = 1,2,\ldots
+Y_{t} =  9.1806 + 0.3926 Y_{t - 1} + 0.1709 Y_{t - 2} + e_{t},\ t = 1,2,\ldots
 \]
 \section*{$ARMA(1,2)$ with zero mean}
 \label{sec-5}
@@ -287,7 +287,7 @@ AIC=534.59   AICc=534.8   BIC=547.55
 \noindent
 \textbf{The Fitted Model:} 
 \[
-Y_{t} =  0.846 Y_{t - 1} + e_{t} +  0.6769 e_{t - 1} +  0.5891 e_{t - 1},\ t = 1,2,\ldots
+Y_{t} = 0.846 Y_{t - 1} + e_{t} + 0.6769 e_{t - 1} + 0.5891 e_{t - 1},\ t = 1,2,\ldots
 \]
 \section*{$ARMA(1,2)$ with non-zero mean}
 \label{sec-6}
@@ -336,11 +336,11 @@ AIC=575.09   AICc=575.42   BIC=591.3
 \noindent
 \textbf{The Fitted Model:} 
 \[
-(Y_{t} -  11.2171 ) =  0.7648 (Y_{t - 1} -  11.2171 ) + e_{t} +  0.7631 e_{t - 1} +  0.6239 e_{t - 2},\ t = 1,2,\ldots
+(Y_{t} - 11.2171 ) = 0.7648 (Y_{t - 1} - 11.2171 ) + e_{t} + 0.7631 e_{t - 1} + 0.6239 e_{t - 2},\ t = 1,2,\ldots
 \]
 that is,
 \[
-Y_{t} =  2.6383 +  0.7648 Y_{t - 1} + e_{t} +  0.7631 e_{t - 1} +  0.6239 e_{t - 2},\ t = 1,2,\ldots
+Y_{t} = 2.6383 + 0.7648 Y_{t - 1} + e_{t} + 0.7631 e_{t - 1} + 0.6239 e_{t - 2},\ t = 1,2,\ldots
 \]
 \section*{ARIMA(1,1,2) without drift}
 \label{sec-7}
@@ -390,7 +390,7 @@ AIC=551.18   AICc=551.39   BIC=564.27
 \noindent
 \textbf{The Fitted Model:} 
 \[
-\nabla Y_{t} =  0.8177 \nabla Y_{t - 1} + e_{t} +  0.6787 e_{t - 1} +  0.6349 e_{t - 2},\ t = 1,2,\ldots
+\nabla Y_{t} = 0.8177 \nabla Y_{t - 1} + e_{t} + 0.6787 e_{t - 1} + 0.6349 e_{t - 2},\ t = 1,2,\ldots
 \]
 \section*{ARIMA(1,1,2) with drift}
 \label{sec-8}
@@ -440,11 +440,11 @@ AIC=522.93   AICc=523.25   BIC=539.3
 \noindent
 \textbf{The Fitted Model:} 
 \[
-(\nabla Y_{t} -  0.8674 ) =  0.7103 (\nabla Y_{t - 1} -  0.8674 ) + e_{t} +  0.6555 e_{t - 1} +  0.5095 e_{t - 2},\ t = 1,2,\ldots
+(\nabla Y_{t} - 0.8674 ) = 0.7103 (\nabla Y_{t - 1} - 0.8674 ) + e_{t} + 0.6555 e_{t - 1} + 0.5095 e_{t - 2},\ t = 1,2,\ldots
 \]
 that is,
 \[
-Y_{t} =  0.2513 +  0.7103 Y_{t - 1} + e_{t} +  0.6555 e_{t - 1} +  0.5095 e_{t - 2},\ t = 1,2,\ldots
+\nabla Y_{t} = 0.2513 + 0.7103 \nabla Y_{t - 1} + e_{t} + 0.6555 e_{t - 1} + 0.5095 e_{t - 2},\ t = 1,2,\ldots
 \]
 \section*{ARIMA(1,2,1) without drift}
 \label{sec-9}
@@ -494,7 +494,7 @@ AIC=500.24   AICc=500.38   BIC=509.7
 \noindent
 \textbf{The Fitted Model:} 
 \[
-\nabla^{2} Y_{t} =  0.9039 \nabla^{2} Y_{t - 1} + e_{t} +  0.5756 e_{t - 1},\ t = 1,2,\ldots
+\nabla^{2} Y_{t} = 0.9039 \nabla^{2} Y_{t - 1} + e_{t} + 0.5756 e_{t - 1},\ t = 1,2,\ldots
 \]
 
 \end{document}

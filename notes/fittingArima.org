@@ -126,7 +126,7 @@ plot(y, ylab = expression(Y[t]))
 \noindent
 *The Theoretical Model:* 
 \[
-(Y_{t} - \mu) = e_{t} + \theta_{1}e_{t - 1} + \theta_{2}e_{t - 2},\ t = 1,2,\ldots
+(Y_{t} - \mu) = e_{t} + \theta_{1}e_{t - 1} + \theta_{2}e_{t - 2} + \theta_{3}e_{t - 3},\ t = 1,2,\ldots
 \]
 
 \noindent
@@ -143,11 +143,11 @@ fit
 \noindent
 *The Fitted Model:* 
 \[
-(Y_{t} - src_R{tmp[3]}) = e_{t} + src_R{tmp[1]} e_{t - 1} + src_R{tmp[2]} e_{t - 2},\ t = 1,2,\ldots
+(Y_{t} - src_R{tmp[4]}) = e_{t} + src_R{tmp[1]} e_{t - 1} + src_R{tmp[2]} e_{t - 2} + src_R{tmp[3]} e_{t - 2},\ t = 1,2,\ldots
 \]
 that is,
 \[
-Y_{t} = src_R{tmp[3]} + e_{t} + src_R{tmp[1]} e_{t - 1} + src_R{tmp[2]} e_{t - 2},\ t = 1,2,\ldots
+Y_{t} = src_R{tmp[4]} + e_{t} + src_R{tmp[1]} e_{t - 1} + src_R{tmp[2]} e_{t - 2} + src_R{tmp[3]} e_{t - 3},\ t = 1,2,\ldots
 \]
 
 * $AR(2)$ with non-zero mean
@@ -366,7 +366,7 @@ fit
 \]
 that is,
 \[
-Y_{t} = src_R{round(tmp[4] - tmp[1] * tmp[4], 4)} + src_R{tmp[1]} Y_{t - 1} + e_{t} + src_R{tmp[2]} e_{t - 1} + src_R{tmp[3]} e_{t - 2},\ t = 1,2,\ldots
+\nabla Y_{t} = src_R{round(tmp[4] - tmp[1] * tmp[4], 4)} + src_R{tmp[1]} \nabla Y_{t - 1} + e_{t} + src_R{tmp[2]} e_{t - 1} + src_R{tmp[3]} e_{t - 2},\ t = 1,2,\ldots
 \]
 
 * ARIMA(1,2,1) without drift
