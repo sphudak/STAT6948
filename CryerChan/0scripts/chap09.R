@@ -33,6 +33,11 @@ plot(m5.tempdub, n.ahead=24, n1 = c(1972,1),
      newxreg = newhar., type = "b",
      ylab = "Temperature", xlab = "Year")
 
+# forecast package
+fc.tempdub <- forecast(m5.tempdub, xreg = newhar.)
+plot(fc.tempdub)
+
+
 # Exhibit 9.3 
 data(color)
 m1.color <- Arima(color, order = c(1,0,0))
@@ -41,6 +46,9 @@ plot(m1.color, n.ahead = 12, type = "b",
 # add the horizontal line at the estimated mean ("intercept") 
 abline(h = coef(m1.color)[names(coef(m1.color)) == "intercept"])
 
+# forecast package
+fc.color <- forecast(m1.color, h = 12)
+plot(fc.color)
 
 
 # Exhibit 9.4
@@ -50,3 +58,6 @@ plot(m1.hare, n.ahead = 25, type = "b", xlab = "Year",
      ylab = "Sqrt(hare)")
 abline(h = coef(m1.hare)[names(coef(m1.hare))=="intercept"])
 
+# forecast package
+fc.hare <- forecast(m1.hare, h = 25)
+plot(fc.hare)
