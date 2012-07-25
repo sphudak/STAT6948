@@ -61,3 +61,10 @@ abline(h = coef(m1.hare)[names(coef(m1.hare))=="intercept"])
 # forecast package
 fc.hare <- forecast(m1.hare, h = 25)
 plot(fc.hare)
+
+# transformed data
+m2.hare <- Arima(hare, order = c(3,0,0), lambda = 0.5)
+fc2.hare <- forecast(m2.hare, h = 25)
+plot(fc2.hare)
+
+
