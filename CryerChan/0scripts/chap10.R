@@ -5,8 +5,8 @@ library(TSA)
 data(co2)
 # The stats pacakage has another dataset of the same name "co2", so
 # make sure that you have loaded the TSA package before loading the co2 data.
-plot(co2, ylab="CO2", 
-     main="Monthly Carbon Dioxide Levels at Alert, NWT, Canada")
+plot(co2, ylab = "CO2", 
+     main = "Monthly Carbon Dioxide Levels at Alert, NWT, Canada")
 
 
 # Exhibit 10.2
@@ -85,6 +85,7 @@ acf(as.vector(diff(co2)), lag.max = 36,
     main = expression(Sample~~ACF~~of~~the~~First~~Differences~~of~~
 CO[2]~~Levels))
 
+
 # Exhibit 10.8
 plot(diff(diff(co2), lag = 12), 
      main = expression(Time~~Series~~Plot~~of~~the~~First~~and~~
@@ -154,3 +155,5 @@ plot(m1.co2, n1 = c(2004,1), n.ahead = 48, col = "red",
      ylab = expression(CO[2]~~Levels),
      main = expression(Long~~Term~~Forecasts~~"for"~~the~~CO[2]~~Model))
 
+fc.m1.co2 <- forecast(m1.co2, 48)
+plot(fc.m1.co2)

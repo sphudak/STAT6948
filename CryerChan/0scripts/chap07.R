@@ -30,7 +30,7 @@ ma1.3.s <- arima.sim(list(ma = 0.9), n = 60)
 estimate.ma1.mom(ma1.3.s)
 
 ma1.4.s <- arima.sim(list(ma = -0.5), n = 60) 
-# true value is theta = -0.9 (from book)
+# true value is theta = -0.5 
 estimate.ma1.mom(ma1.4.s)
 # arima estimation much better
 Arima(ma1.4.s, order = c(0,0,1), method = "CSS", include.mean = FALSE)
