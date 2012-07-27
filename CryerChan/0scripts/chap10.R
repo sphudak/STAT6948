@@ -148,6 +148,9 @@ plot(m1.co2, n1 = c(2003,1), n.ahead = 24,
      ylab = expression(CO[2]~~Levels),
      main = expression(Forecasts~~and~~Forecast~~Limits~~"for"~~the~~CO[2]~~Model))
 # Note that for is a reserved word in R so it has to be enclosed in quotation marks.
+fc1.m1.co2 <- forecast(m1.co2, 24)
+plot(fc1.m1.co2)
+
 
 # Exhibit 10.17
 plot(m1.co2, n1 = c(2004,1), n.ahead = 48, col = "red", 
@@ -155,5 +158,5 @@ plot(m1.co2, n1 = c(2004,1), n.ahead = 48, col = "red",
      ylab = expression(CO[2]~~Levels),
      main = expression(Long~~Term~~Forecasts~~"for"~~the~~CO[2]~~Model))
 
-fc.m1.co2 <- forecast(m1.co2, 48)
-plot(fc.m1.co2)
+fc2.m1.co2 <- forecast(m1.co2, 48)
+plot(fc2.m1.co2)
