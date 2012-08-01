@@ -17,7 +17,7 @@ air.m1 <- arimax(log(airmiles), order = c(0,1,1),
                  transfer = list(c(0,0), c(1,0)), 
                  xreg = data.frame(Dec96 = 1*(seq(airmiles) == 12),
                                    Jan97 = 1*(seq(airmiles) == 13),
-                                   Dec02 = 1*(seq(airmiles)==84)), 
+                                   Dec02 = 1*(seq(airmiles) == 84)), 
                  method = "ML")
 # Additive outliers are incorporated as dummy variables in xreg.
 # Transfer function components are incorporated by the xtransf and transfer
