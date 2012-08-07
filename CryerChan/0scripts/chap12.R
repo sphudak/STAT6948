@@ -110,7 +110,7 @@ g1 <- garch(garch11.sim, order = c(2,2))
 summary(g1)
 
 # Exhibit 12.24
-g2 <- garch(garch11.sim,order=c(1,1))
+g2 <- garch(garch11.sim, order = c(1,1))
 summary(g2)
 
 # Exhibit 12.25
@@ -167,3 +167,38 @@ McLeod.Li.test(arima(hkrate, order = c(1,0,0), xreg = data.frame(outlier1)))
 
 # Exhibit 12.36
 plot(ts(usd.hkd$v, freq = 1), type = "l", xlab = "day", ylab = "conditional variance")
+
+
+# install.packages("fGarch")
+library(fGarch)
+fgarch.fitted <- garchFit(~ garch(1,1), data = r.cref, include.mean = FALSE)
+fgarch.fitted
+
+# compare to tseries model
+summary(m1)
+
+# cond. variance fitted values tseries way
+fitted(m1)[,1]
+plot(fitted(m1)[,1])
+
+# cond. variance fitted values fGarch way
+fgarch.fitted@sigma.t
+plot.ts(fgarch.fitted@sigma.t)
+plot(fgarch.fitted) # select option 2
+
+# residuals
+plot.ts(fgarch.fitted@residuals)
+
+# forecasting
+predict(fgarch.fitted, n.ahead = 15)
+
+fgarch.fitted2 <- garchFit(~ garch(1,1), data = r.cref, include.mean = TRUE)
+predict(fgarch.fitted2, n.ahead = 15)
+
+fgarch.fitted3 <- garchFit(~ arma(2,0) + garch(1,1), data = r.cref, include.mean = TRUE)
+predict(fgarch.fitted3, n.ahead = 15)
+
+plot.ts(predict(fgarch.fitted3, n.ahead = 15))
+
+
+

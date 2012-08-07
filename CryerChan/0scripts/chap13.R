@@ -2,11 +2,11 @@
 library(TSA)
 
 # Exhibit 13.1
-t=1:96 # n=96
-cos1=cos(2*pi*t*4/96)
-cos2=cos(2*pi*(t*14/96+.3))
-plot(t,cos1, type="o", ylab="Cosines")
-lines(t,cos2,lty="dotted",type="o",pch=4)
+t = 1:96 # n=96
+cos1 = cos(2*pi*t*4/96)
+cos2 = cos(2*pi*(t*14/96+.3))
+plot(t, cos1, type = "o", ylab = "Cosines")
+lines(t, cos2, lty = "dotted",type = "o",pch=4)
 
 # Exhibit 13.2
 # You may want to plot many of the graphs at fullscreen resolution to see more detail
